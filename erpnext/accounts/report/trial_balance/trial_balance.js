@@ -24,6 +24,7 @@ frappe.require("assets/erpnext/js/financial_statements.js", function () {
 					if (!fiscal_year) {
 						return;
 					}
+<<<<<<< HEAD
 					frappe.model.with_doc("Fiscal Year", fiscal_year, function (r) {
 						var fy = frappe.model.get_doc("Fiscal Year", fiscal_year);
 						frappe.query_report.set_filter_value({
@@ -113,6 +114,70 @@ frappe.require("assets/erpnext/js/financial_statements.js", function () {
 		parent_field: "parent_account",
 		initial_depth: 3,
 	};
+=======
+				}
+			}
+		},
+		{
+			"fieldname": "project",
+			"label": __("Project"),
+			"fieldtype": "Link",
+			"options": "Project"
+		},
+		{
+			"fieldname": "finance_book",
+			"label": __("Finance Book"),
+			"fieldtype": "Link",
+			"options": "Finance Book",
+		},
+		{
+			"fieldname": "presentation_currency",
+			"label": __("Currency"),
+			"fieldtype": "Select",
+			"options": erpnext.get_presentation_currency_list()
+		},
+		{
+			"fieldname": "with_period_closing_entry_for_opening",
+			"label": __("With Period Closing Entry For Opening Balances"),
+			"fieldtype": "Check",
+			"default": 1
+		},
+		{
+			"fieldname": "with_period_closing_entry_for_current_period",
+			"label": __("Period Closing Entry For Current Period"),
+			"fieldtype": "Check",
+			"default": 1
+		},
+		{
+			"fieldname": "show_zero_values",
+			"label": __("Show zero values"),
+			"fieldtype": "Check"
+		},
+		{
+			"fieldname": "show_unclosed_fy_pl_balances",
+			"label": __("Show unclosed fiscal year's P&L balances"),
+			"fieldtype": "Check"
+		},
+		{
+			"fieldname": "include_default_book_entries",
+			"label": __("Include Default FB Entries"),
+			"fieldtype": "Check",
+			"default": 1
+		},
+		{
+			"fieldname": "show_net_values",
+			"label": __("Show net values in opening and closing columns"),
+			"fieldtype": "Check",
+			"default": 1
+		}
+	],
+	"formatter": erpnext.financial_statements.formatter,
+	"tree": true,
+	"name_field": "account",
+	"parent_field": "parent_account",
+	"initial_depth": 3
+}
+>>>>>>> 6e6c818084 (feat: Period-wise closing entries for TB (#39712))
 
 	erpnext.utils.add_dimensions("Trial Balance", 6);
 });
