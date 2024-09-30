@@ -876,6 +876,7 @@ class SalesInvoice(SellingController):
 		gl_entries = merge_similar_entries(gl_entries)
 
 		self.make_loyalty_point_redemption_gle(gl_entries)
+		self.make_gift_card_gle(gl_entries)
 		self.make_pos_gl_entries(gl_entries)
 
 		self.make_write_off_gl_entry(gl_entries)
@@ -1091,6 +1092,30 @@ class SalesInvoice(SellingController):
 			asset.set_status()
 		else:
 			asset.set_status("Sold" if self.docstatus==1 else None)
+
+	def make_gift_card_gle(self, gl_entries):
+		if cint(self.get('gift_card_used', 0)):
+			gl_entries.append(
+				self.get_gl_dict({
+					"account": self.debit_to,
+					"party_type": "Customer",
+					"party": self.customer,
+					"against": "Expense account - " + cstr(self.get('gift_card_account')) + " for the Gift Card",
+					"credit": self.gift_card_amount,
+					"against_voucher": self.return_against if cint(self.is_return) else self.name,
+					"against_voucher_type": self.doctype,
+					"cost_center": self.cost_center
+				}, item=self)
+			)
+			gl_entries.append(
+				self.get_gl_dict({
+					"account": self.get('gift_card_account'),
+					"cost_center": self.cost_center or self.get('git_card_cost_center'),
+					"against": self.customer,
+					"debit": self.gift_card_amount,
+					"remark": "Gift Card by the customer"
+				}, item=self)
+			)
 
 	def make_loyalty_point_redemption_gle(self, gl_entries):
 		if cint(self.redeem_loyalty_points):

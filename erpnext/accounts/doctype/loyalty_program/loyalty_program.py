@@ -93,7 +93,10 @@ def validate_loyalty_points(ref_doc, points_to_redeem):
 	server_type=get_server_type()
 	if server_type:
 		return
-	
+
+	if ref_doc.doctype == "POS Invoice" and ref_doc.is_return:
+		return
+
 	if ref_doc.doctype == "Sales Invoice":
 		posting_date = ref_doc.posting_date
 	else:
@@ -143,7 +146,7 @@ def get_opening_lp(customer):
                                          'invoice': "",
                                          'expiry_date':[">=",expire_date]},
                                 fields=['sum(loyalty_points) as loyalty_points', 'invoice'])
-    
+
     if len(opening_lp) > 0 and opening_lp[0].loyalty_points:
         olp = opening_lp[0].loyalty_points
 
@@ -173,7 +176,7 @@ def get_loyalty_details(customer, loyalty_program,expiry_date=None, company=None
 
     for lpe in lp_entries:
         if date_diff(today(), lpe.posting_date) >= duration.lp_duration or lpe.loyalty_points < 0:
-            
+
             if lpe.loyalty_points>0:
                 acquired_list.append(lpe.loyalty_points)
             elif lpe.loyalty_points>0 and datetime.now().date()>lpe.expiry_date:

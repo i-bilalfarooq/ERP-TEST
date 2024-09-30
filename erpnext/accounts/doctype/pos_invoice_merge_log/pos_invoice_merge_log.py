@@ -123,6 +123,8 @@ class POSInvoiceMergeLog(Document):
     def merge_pos_invoice_into(self, invoice, data):
         items, payments, taxes = [], [], []
         loyalty_amount_sum, loyalty_points_sum = 0, 0
+        gift_card_amount_sum = 0
+        gift_card_setting = frappe.get_single("Gift Card Setting")
         for doc in data:
             map_doc(doc, invoice, table_map={"doctype": invoice.doctype})
 
@@ -131,6 +133,11 @@ class POSInvoiceMergeLog(Document):
                 invoice.loyalty_redemption_cost_center = doc.loyalty_redemption_cost_center
                 loyalty_points_sum += doc.loyalty_points
                 loyalty_amount_sum += doc.loyalty_amount
+
+            if doc.gift_card_amount:
+                gift_card_amount_sum += doc.gift_card_amount
+                invoice.gift_card_account = gift_card_setting.gift_card_account
+                invoice.git_card_cost_center = gift_card_setting.cost_center
 
             for item in doc.get('items'):
                 found = False
@@ -177,6 +184,11 @@ class POSInvoiceMergeLog(Document):
             invoice.loyalty_points = loyalty_points_sum
             invoice.loyalty_amount = loyalty_amount_sum
 
+        if gift_card_amount_sum:
+            invoice.gift_card_used = 1
+            invoice.gift_card_account = gift_card_setting.gift_card_account
+            invoice.gift_card_amount = gift_card_amount_sum
+            invoice.git_card_cost_center = gift_card_setting.cost_center
         invoice.set('items', items)
         invoice.set('payments', payments)
         invoice.set('taxes', taxes)
