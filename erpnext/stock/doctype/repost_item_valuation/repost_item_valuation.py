@@ -125,6 +125,7 @@ def notify_error_to_stock_managers(doc, traceback):
 	)
 	frappe.sendmail(recipients=recipients, subject=subject, message=message)
 
+@frappe.whitelist()
 def repost_entries():
 	if not in_configured_timeslot():
 		return
@@ -139,8 +140,8 @@ def repost_entries():
 	if riv_entries:
 		return
 
-	for d in frappe.get_all('Company', filters= {'enable_perpetual_inventory': 1}):
-		check_if_stock_and_account_balance_synced(today(), d.name)
+	# for d in frappe.get_all('Company', filters= {'enable_perpetual_inventory': 1}):
+	# 	check_if_stock_and_account_balance_synced(today(), d.name)
 
 def get_repost_item_valuation_entries():
 	return frappe.db.sql(""" SELECT name from `tabRepost Item Valuation`
