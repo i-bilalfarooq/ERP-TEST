@@ -837,19 +837,23 @@ def validate_cancelled_item(item_code, docstatus=None):
 	if docstatus == 2:
 		frappe.throw(_("Item {0} is cancelled").format(item_code))
 
-def get_last_purchase_details(item_code, doc_name=None, conversion_rate=1.0):
+def get_last_purchase_details(item_code, doc_name=None, conversion_rate=1.0,price_list=None):
 	"""returns last purchase details in stock uom"""
 	# get last purchase order item details
+	condation=""
+	if condation!=None:
+		condation="and po.buying_price_list='{0}'".format(price_list)
 
 	last_purchase_order = frappe.db.sql("""\
 		select po.name, po.transaction_date, po.conversion_rate,
 			po_item.conversion_factor, po_item.base_price_list_rate,
 			po_item.discount_percentage, po_item.base_rate, po_item.base_net_rate
 		from `tabPurchase Order` po, `tabPurchase Order Item` po_item
-		where po.docstatus = 1 and po_item.item_code = %s and po.name != %s and
+		where po.docstatus = 1 and po_item.item_code = '{0}' and po.name != '{1}' and
 			po.name = po_item.parent
+			{2}
 		order by po.transaction_date desc, po.name desc
-		limit 1""", (item_code, cstr(doc_name)), as_dict=1)
+		limit 1""".format(item_code, cstr(doc_name),condation), as_dict=1)
 
 
 	# get last purchase receipt item details
@@ -858,10 +862,11 @@ def get_last_purchase_details(item_code, doc_name=None, conversion_rate=1.0):
 			pr_item.conversion_factor, pr_item.base_price_list_rate, pr_item.discount_percentage,
 			pr_item.base_rate, pr_item.base_net_rate
 		from `tabPurchase Receipt` pr, `tabPurchase Receipt Item` pr_item
-		where pr.docstatus = 1 and pr_item.item_code = %s and pr.name != %s and
+		where pr.docstatus = 1 and pr_item.item_code = '{0}' and pr.name != '{1}' and
 			pr.name = pr_item.parent
+			{2}	   
 		order by pr.posting_date desc, pr.posting_time desc, pr.name desc
-		limit 1""", (item_code, cstr(doc_name)), as_dict=1)
+		limit 1""".format(item_code, cstr(doc_name),condation),as_dict=1)
 
 	purchase_order_date = getdate(last_purchase_order and last_purchase_order[0].transaction_date
 							   or "1900-01-01")
