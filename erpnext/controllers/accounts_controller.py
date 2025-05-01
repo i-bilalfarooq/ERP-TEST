@@ -549,7 +549,7 @@ class AccountsController(TransactionBase):
 			account_currency = get_account_currency(gl_dict.account)
 
 		if gl_dict.account and self.doctype not in ["Journal Entry",
-			"Period Closing Voucher", "Payment Entry", "Purchase Receipt", "Purchase Invoice", "Stock Entry"]:
+			"Branch Period Closing Voucher", "Period Closing Voucher", "Payment Entry", "Purchase Receipt", "Purchase Invoice", "Stock Entry"]:
 			self.validate_account_currency(gl_dict.account, account_currency)
 
 		if gl_dict.account and self.doctype not in ["Journal Entry", "Period Closing Voucher", "Payment Entry"]:
