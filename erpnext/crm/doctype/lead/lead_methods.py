@@ -137,7 +137,8 @@ def update_lead_by_batch(docs):
 				doc["phone"] = existing_doc.phone
 
 			if existing_doc.lead_name  and existing_doc.lead_name != "" and existing_doc.lead_name != "Chưa rõ":
-				doc["lead_name"] = existing_doc.lead_name 
+				doc["first_name"] = existing_doc.lead_name
+				doc["lead_name"] = existing_doc.lead_name
 
 			existing_doc.update(doc)
 			existing_doc.save()
