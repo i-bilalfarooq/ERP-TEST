@@ -47,7 +47,6 @@ def get_leads_to_summary():
     GROUP BY
         c.pancake_conversation_id;
     """
-
     pancakes = frappe.db.sql(sql, as_dict=True)
     return pancakes
 
