@@ -222,7 +222,8 @@ class Lead(SellingController, CRMNote):
 				"Contact",
 				{
 					"pancake_page_id": parsed_pancake_data.get("page_id", None),
-					"pancake_conversation_id": parsed_pancake_data.get("conversation_id", None)
+					"pancake_conversation_id": parsed_pancake_data.get("conversation_id", None),
+					"pancake_customer_id": parsed_pancake_data.get("customer_id", None)
 				},
 			)
 
