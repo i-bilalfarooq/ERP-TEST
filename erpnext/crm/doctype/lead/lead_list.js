@@ -72,7 +72,7 @@ frappe.listview_settings["Lead"] = {
 			if(doc.image) {
 				avatar = `
 				<span class="avatar avatar-small level-item filterable" title="${doc.first_name}" style="margin-right: 4px; padding: 3px;">
-					<span class="avatar-frame" style="background-image: url(&quot;${doc.image}&quot;)" <="" span="" title="${doc.first_name}"></span>
+     <span class="avatar-frame" style="background-image: url("${doc.image}")" title="${doc.first_name}"></span>
 				</span>
 				`
 			} else {
