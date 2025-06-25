@@ -390,14 +390,9 @@ def create_contact(contact, party_type, party, email):
 	doc = frappe.get_doc(
 		{
 			"doctype": "Contact",
-<<<<<<< HEAD
 			"first_name": first,
 			"middle_name": middle,
 			"last_name": last,
-=======
-			"first_name": contact[0],
-			"last_name": len(contact) > 1 and contact[1] or "",
->>>>>>> a74e1f1600 (fix(crm): ensure primary address and contact follows customer setting (#37710))
 			"is_primary_contact": 1,
 		}
 	)
