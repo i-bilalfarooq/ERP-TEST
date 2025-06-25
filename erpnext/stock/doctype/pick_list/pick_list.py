@@ -783,10 +783,8 @@ class PickList(TransactionBase):
 			if qty_in_bundle := bundle_items.get(item.item_code):
 				possible_bundles.setdefault(item.product_bundle_item, 0)
 				possible_bundles[item.product_bundle_item] += item.picked_qty / qty_in_bundle
-			else:
-				possible_bundles.setdefault(item.product_bundle_item, 0)
 
-		return int(flt(min(possible_bundles.values()), precision or 6))
+		return int(flt(min(possible_bundles.values()), precision or 6)) if possible_bundles else 0
 
 	def has_unreserved_stock(self):
 		if self.purpose == "Delivery":
