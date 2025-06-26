@@ -1026,12 +1026,6 @@ erpnext.PointOfSale.ItemCart = class {
 						Draft: "red",
 						Return: "gray",
 						Consolidated: "blue",
-<<<<<<< HEAD
-=======
-						"Credit Note Issued": "gray",
-						"Partly Paid": "yellow",
-						Overdue: "yellow",
->>>>>>> e1d9f863c6 (fix: customer section on pos item cart (#48284))
 					};
 
 					transaction_container.append(
