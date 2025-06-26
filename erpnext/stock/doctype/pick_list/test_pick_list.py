@@ -401,7 +401,7 @@ class TestPickList(IntegrationTestCase):
 		item_code = make_item(
 			uoms=[
 				{"uom": "Nos", "conversion_factor": 1},
-				{"uom": "Box", "conversion_factor": 5},
+				{"uom": "Hand", "conversion_factor": 5},
 				{"uom": "Unit", "conversion_factor": 0.5},
 			]
 		).name
@@ -417,7 +417,7 @@ class TestPickList(IntegrationTestCase):
 					{
 						"item_code": item_code,
 						"qty": 1,
-						"uom": "Box",
+						"uom": "Hand",
 						"delivery_date": frappe.utils.today(),
 						"warehouse": "_Test Warehouse - _TC",
 					},
@@ -546,7 +546,7 @@ class TestPickList(IntegrationTestCase):
 		sales_order_2 = frappe.get_doc(
 			{
 				"doctype": "Sales Order",
-				"customer": "_Test Customer",
+				"customer": "_Test Customer 1",
 				"company": "_Test Company",
 				"items": [
 					{
@@ -565,11 +565,10 @@ class TestPickList(IntegrationTestCase):
 				"company": "_Test Company",
 				"items_based_on": "Sales Order",
 				"purpose": "Delivery",
-				"picker": "P001",
 				"customer": "_Test Customer",
 				"locations": [
 					{
-						"item_code": "_Test Item ",
+						"item_code": "_Test Item",
 						"qty": 1,
 						"stock_qty": 1,
 						"conversion_factor": 1,
@@ -599,7 +598,7 @@ class TestPickList(IntegrationTestCase):
 				self.assertEqual(dn_item.item_code, "_Test Item")
 				self.assertEqual(dn_item.against_sales_order, sales_order_1.name)
 				self.assertEqual(dn_item.against_pick_list, pick_list.name)
-				self.assertEqual(dn_item.pick_list_item, pick_list.locations[dn_item.idx - 1].name)
+				self.assertEqual(dn_item.pick_list_item, pick_list.locations[0].name)
 
 		for dn in frappe.get_all(
 			"Delivery Note",
@@ -610,17 +609,16 @@ class TestPickList(IntegrationTestCase):
 				self.assertEqual(dn_item.item_code, "_Test Item 2")
 				self.assertEqual(dn_item.against_sales_order, sales_order_2.name)
 				self.assertEqual(dn_item.against_pick_list, pick_list.name)
-				self.assertEqual(dn_item.pick_list_item, pick_list.locations[dn_item.idx - 1].name)
+				self.assertEqual(dn_item.pick_list_item, pick_list.locations[1].name)
 		# test DN creation without so
 		pick_list_1 = frappe.get_doc(
 			{
 				"doctype": "Pick List",
 				"company": "_Test Company",
 				"purpose": "Delivery",
-				"picker": "P001",
 				"locations": [
 					{
-						"item_code": "_Test Item ",
+						"item_code": "_Test Item",
 						"qty": 1,
 						"stock_qty": 1,
 						"conversion_factor": 1,
