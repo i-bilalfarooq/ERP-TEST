@@ -1393,36 +1393,7 @@ class TestPickList(IntegrationTestCase):
 
 		sales_order = make_sales_order(item_code=item_1, qty=10, rate=100)
 
-		pick_list = frappe.get_doc(
-			{
-				"doctype": "Pick List",
-				"company": "_Test Company",
-				"customer": "_Test Customer",
-				"purpose": "Delivery",
-				"locations": [
-					{
-						"item_code": item_2,
-						"qty": 10,
-						"stock_qty": 10,
-						"warehouse": warehouse_1,
-						"picked_qty": 0,
-						"sales_order": sales_order.name,
-						"sales_order_item": sales_order.items[0].name,
-						"product_bundle_item": sales_order.packed_items[0].name,
-					},
-					{
-						"item_code": item_3,
-						"qty": 10,
-						"stock_qty": 10,
-						"warehouse": warehouse_2,
-						"picked_qty": 0,
-						"sales_order": sales_order.name,
-						"sales_order_item": sales_order.items[0].name,
-						"product_bundle_item": sales_order.packed_items[1].name,
-					},
-				],
-			}
-		)
+		pick_list = create_pick_list(sales_order.name)
 		pick_list.submit()
 
 		delivery_note = create_delivery_note(pick_list.name)
@@ -1442,31 +1413,16 @@ class TestPickList(IntegrationTestCase):
 		sales_order = make_sales_order(item_code=item, qty=20, rate=100)
 		stock_entry = make_stock_entry(item=item, to_warehouse=warehouse, qty=500, basic_rate=100)
 
-		pick_list = frappe.get_doc(
+		pick_list = create_pick_list(sales_order.name)
+		pick_list.append(
+			"locations",
 			{
-				"doctype": "Pick List",
-				"company": "_Test Company",
-				"customer": "_Test Customer",
-				"purpose": "Delivery",
-				"locations": [
-					{
-						"item_code": item,
-						"qty": 20,
-						"stock_qty": 20,
-						"warehouse": warehouse,
-						"picked_qty": 0,
-						"sales_order": sales_order.name,
-						"sales_order_item": sales_order.items[0].name,
-					},
-					{
-						"item_code": item,
-						"qty": 10,
-						"stock_qty": 10,
-						"warehouse": warehouse,
-						"picked_qty": 0,
-					},
-				],
-			}
+				"item_code": item,
+				"qty": 10,
+				"stock_qty": 10,
+				"warehouse": warehouse,
+				"picked_qty": 0,
+			},
 		)
 		pick_list.submit()
 
