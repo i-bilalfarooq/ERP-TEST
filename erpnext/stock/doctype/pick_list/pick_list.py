@@ -1215,7 +1215,7 @@ def create_delivery_note(source_name, target_doc=None):
 		delivery_note = create_dn_with_so(sales_dict, pick_list)
 
 	if not all(item.sales_order for item in pick_list.locations):
-		delivery_note = create_dn_wo_so(pick_list, delivery_note)
+		delivery_note = create_dn_wo_so(pick_list)
 
 	return delivery_note
 
@@ -1235,6 +1235,8 @@ def create_dn_wo_so(pick_list, delivery_note=None):
 		},
 	}
 	map_pl_locations(pick_list, item_table_mapper_without_so, delivery_note)
+	delivery_note.flags.ignore_mandatory = True
+	delivery_note.save()
 
 	return delivery_note
 
@@ -1279,8 +1281,8 @@ def create_dn_with_so(sales_dict, pick_list):
 		delivery_note = create_dn_from_so(pick_list, sales_dict[customer], None)
 		if delivery_note:
 			delivery_note.flags.ignore_mandatory = True
-			delivery_note.save()
-			update_packed_item_details(pick_list, delivery_note)
+			# updates packed_items on save
+			# save as multiple customers are possible
 			delivery_note.save()
 
 	return delivery_note
@@ -1346,8 +1348,7 @@ def map_pl_locations(pick_list, item_mapper, delivery_note, sales_order=None):
 	set_delivery_note_missing_values(delivery_note)
 
 	delivery_note.company = pick_list.company
-	if sales_order:
-		delivery_note.customer = frappe.get_value("Sales Order", sales_order, "customer")
+	delivery_note.customer = frappe.get_value("Sales Order", sales_order, "customer")
 
 
 def add_product_bundles_to_delivery_note(
@@ -1371,31 +1372,6 @@ def add_product_bundles_to_delivery_note(
 		)
 		dn_bundle_item.against_pick_list = pick_list.name
 		update_delivery_note_item(sales_order_item, dn_bundle_item, delivery_note)
-
-
-def update_packed_item_details(pick_list: "PickList", delivery_note) -> None:
-	"""Update stock details on packed items table of delivery note."""
-
-	def _find_so_row(packed_item):
-		for item in delivery_note.items:
-			if packed_item.parent_detail_docname == item.name:
-				return item.so_detail
-
-	def _find_pick_list_location(bundle_row, packed_item):
-		if not bundle_row:
-			return
-		for loc in pick_list.locations:
-			if loc.sales_order_item == bundle_row and loc.item_code == packed_item.item_code:
-				return loc
-
-	for packed_item in delivery_note.packed_items:
-		so_row = _find_so_row(packed_item)
-		location = _find_pick_list_location(so_row, packed_item)
-		if not location:
-			continue
-		packed_item.warehouse = location.warehouse
-		packed_item.batch_no = location.batch_no
-		packed_item.serial_no = location.serial_no
 
 
 @frappe.whitelist()

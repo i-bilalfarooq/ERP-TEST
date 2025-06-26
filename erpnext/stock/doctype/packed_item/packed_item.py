@@ -249,7 +249,7 @@ def update_packed_item_with_pick_list_info(main_item_row, pi_row):
 			"sales_order": main_item_row.get("against_sales_order"),
 			"parent": main_item_row.against_pick_list,
 		},
-		["warehouse", "batch_no", "serial_no", "name"],
+		["warehouse", "batch_no", "serial_no"],
 		as_dict=True,
 		order_by="qty desc",
 	)
