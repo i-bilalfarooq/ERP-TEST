@@ -623,7 +623,8 @@
 			background-color: var(--control-bg);
 		}
 
-		> .invoice-name-customer {
+		> .invoice-name-customer,
+		> .invoice-name-date {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-around;
@@ -642,7 +643,22 @@
 			}
 		}
 
-		> .invoice-total-date {
+		> .invoice-name-date {
+			> .invoice-name {
+				font-size: var(--text-md);
+				display: flex;
+				align-items: center;
+				font-weight: 700;
+			}
+
+			> .invoice-date {
+				@extend .nowrap;
+				font-size: var(--text-sm);
+			}
+		}
+
+		> .invoice-total-date,
+		> .invoice-total-status {
 			display: flex;
 			flex-direction: column;
 			font-weight: 500;
@@ -662,6 +678,18 @@
 				color: var(--gray-500);
 				justify-content: right;
 				font-weight: 400;
+			}
+		}
+
+		> .invoice-total-status {
+			> .invoice-total {
+				margin-right: 8px;
+			}
+
+			> .invoice-status {
+				display: flex;
+				align-items: center;
+				justify-content: right;
 			}
 		}
 	}

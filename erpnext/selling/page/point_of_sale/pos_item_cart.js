@@ -1031,6 +1031,8 @@ erpnext.PointOfSale.ItemCart = class {
 						Return: "gray",
 						Consolidated: "blue",
 						"Credit Note Issued": "gray",
+						"Partly Paid": "yellow",
+						Overdue: "yellow",
 					};
 
 					transaction_container.append(
@@ -1041,7 +1043,7 @@ erpnext.PointOfSale.ItemCart = class {
 						</div>
 						<div class="invoice-total-status">
 							<div class="invoice-total">
-								${format_currency(invoice.grand_total, invoice.currency, 0) || 0}
+								${format_currency(invoice.grand_total, invoice.currency, frappe.sys_defaults.currency_precision) || 0}
 							</div>
 							<div class="invoice-status">
 								<span class="indicator-pill whitespace-nowrap ${indicator_color[invoice.status]}">
