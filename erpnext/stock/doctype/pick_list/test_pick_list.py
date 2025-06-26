@@ -1388,8 +1388,8 @@ class TestPickList(IntegrationTestCase):
 
 		make_product_bundle(item_1, items=[item_2, item_3])
 
-		stock_entry_1 = make_stock_entry(item=item_2, to_warehouse=warehouse_1, qty=500, basic_rate=100)
-		stock_entry_2 = make_stock_entry(item=item_3, to_warehouse=warehouse_2, qty=500, basic_rate=100)
+		stock_entry_1 = make_stock_entry(item=item_2, to_warehouse=warehouse_1, qty=50, basic_rate=100)
+		stock_entry_2 = make_stock_entry(item=item_3, to_warehouse=warehouse_2, qty=50, basic_rate=100)
 
 		sales_order = make_sales_order(item_code=item_1, qty=10, rate=100)
 
