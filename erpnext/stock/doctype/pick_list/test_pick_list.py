@@ -1409,6 +1409,50 @@ class TestPickList(IntegrationTestCase):
 		stock_entry_2.cancel()
 		stock_entry_3.cancel()
 
+	def test_packed_item_multiple_times_in_so(self):
+		frappe.db.delete("Item Price")
+		warehouse_1 = "RJ Warehouse - _TC"
+		warehouse_2 = "_Test Warehouse 2 - _TC"
+		warehouse = "_Test Warehouse - _TC"
+		item_1 = make_item(properties={"is_stock_item": 0}).name
+		item_2 = make_item().name
+		item_3 = make_item().name
+
+		make_product_bundle(item_1, items=[item_2, item_3])
+
+		stock_entry_1 = make_stock_entry(item=item_2, to_warehouse=warehouse_1, qty=20, basic_rate=100)
+		stock_entry_2 = make_stock_entry(item=item_3, to_warehouse=warehouse_1, qty=8, basic_rate=100)
+		stock_entry_3 = make_stock_entry(item=item_3, to_warehouse=warehouse_2, qty=12, basic_rate=100)
+
+		sales_order = make_sales_order(
+			item_list=[
+				{"item_code": item_1, "qty": 8, "rate": 100, "warehouse": warehouse},
+				{"item_code": item_1, "qty": 12, "rate": 100, "warehouse": warehouse},
+			]
+		)
+
+		pick_list = create_pick_list(sales_order.name)
+		pick_list.submit()
+		self.assertEqual(len(pick_list.locations), 4)
+		delivery_note = create_delivery_note(pick_list.name)
+
+		self.assertEqual(delivery_note.items[0].qty, 8)
+		self.assertEqual(delivery_note.items[1].qty, 12)
+
+		self.assertEqual(delivery_note.packed_items[0].qty, 8)
+		self.assertEqual(delivery_note.packed_items[2].qty, 12)
+
+		self.assertEqual(delivery_note.packed_items[0].warehouse, warehouse_1)
+		self.assertEqual(delivery_note.packed_items[1].warehouse, warehouse_1)
+		self.assertEqual(delivery_note.packed_items[2].warehouse, warehouse_1)
+		self.assertEqual(delivery_note.packed_items[3].warehouse, warehouse_2)
+
+		pick_list.cancel()
+		sales_order.cancel()
+		stock_entry_1.cancel()
+		stock_entry_2.cancel()
+		stock_entry_3.cancel()
+
 	def test_pick_list_with_and_without_so(self):
 		warehouse = "_Test Warehouse - _TC"
 		item = make_item().name
