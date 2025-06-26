@@ -1348,7 +1348,8 @@ def map_pl_locations(pick_list, item_mapper, delivery_note, sales_order=None):
 	set_delivery_note_missing_values(delivery_note)
 
 	delivery_note.company = pick_list.company
-	delivery_note.customer = frappe.get_value("Sales Order", sales_order, "customer")
+	if sales_order:
+		delivery_note.customer = frappe.get_value("Sales Order", sales_order, "customer")
 
 
 def add_product_bundles_to_delivery_note(
