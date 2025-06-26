@@ -141,7 +141,6 @@ class Company(NestedSet):
 		return exists
 
 	def validate(self):
-		old_doc = self.get_doc_before_save()
 		self.update_default_account = False
 		if self.is_new():
 			self.update_default_account = True
@@ -157,7 +156,7 @@ class Company(NestedSet):
 		self.check_parent_changed()
 		self.set_chart_of_accounts()
 		self.validate_parent_company()
-		self.validate_pending_reposts(old_doc)
+		self.validate_pending_reposts()
 
 	def validate_abbr(self):
 		if not self.abbr:
@@ -495,10 +494,10 @@ class Company(NestedSet):
 			if not is_group:
 				frappe.throw(_("Parent Company must be a group company"))
 
-	def validate_pending_reposts(self, old_doc):
-		if old_doc.accounts_frozen_till_date != self.accounts_frozen_till_date:
+	def validate_pending_reposts(self):
+		if self.accounts_frozen_till_date:
 			if self.accounts_frozen_till_date:
-				check_pending_reposting(self.accounts_frozen_till_date)
+				check_pending_reposting(posting_date=self.accounts_frozen_till_date, company=self.name)
 
 	def set_default_accounts(self):
 		default_accounts = {
