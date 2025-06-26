@@ -286,13 +286,24 @@
 					grid-template-columns: repeat(2, minmax(0, 1fr));
 					margin-top: var(--margin-md);
 					column-gap: var(--padding-sm);
-					row-gap: var(--padding-xs);
+					row-gap: var(--padding-sm);
 				}
 
-				> .transactions-label {
-					@extend .label;
+				> .transactions-section {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
 					margin-top: var(--margin-md);
 					margin-bottom: var(--margin-sm);
+
+					> .recent-transactions {
+						@extend .label;
+					}
+
+					> .last-transaction {
+						font-weight: 400;
+						font-size: var(--text-sm);
+					}
 				}
 			}
 
@@ -301,8 +312,8 @@
 				overflow-x: hidden;
 				overflow-y: scroll;
 				margin-right: -12px;
-				padding-right: 12px;
 				margin-left: -10px;
+				scrollbar-width: thin;
 
 				> .no-transactions-placeholder {
 					height: 100%;
