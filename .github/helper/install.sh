@@ -4,9 +4,13 @@ set -e
 
 cd ~ || exit
 
+
+curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
 sudo apt update
 sudo apt remove mysql-server mysql-client
 sudo apt install libcups2-dev redis-server mariadb-client libmariadb-dev
+
+pip cache remove mysqlclient
 
 pip install frappe-bench
 
