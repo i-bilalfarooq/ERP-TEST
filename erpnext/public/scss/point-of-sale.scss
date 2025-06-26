@@ -622,14 +622,11 @@
 			background-color: var(--gray-50);
 		}
 
-<<<<<<< HEAD
-=======
 		&.invoice-selected {
 			background-color: var(--control-bg);
 		}
 
 		> .invoice-name-customer,
->>>>>>> e1d9f863c6 (fix: customer section on pos item cart (#48284))
 		> .invoice-name-date {
 			display: flex;
 			flex-direction: column;
@@ -649,8 +646,6 @@
 			}
 		}
 
-<<<<<<< HEAD
-=======
 		> .invoice-name-date {
 			> .invoice-name {
 				font-size: var(--text-md);
@@ -666,7 +661,6 @@
 		}
 
 		> .invoice-total-date,
->>>>>>> e1d9f863c6 (fix: customer section on pos item cart (#48284))
 		> .invoice-total-status {
 			display: flex;
 			flex-direction: column;
