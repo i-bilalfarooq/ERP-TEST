@@ -620,53 +620,6 @@
    "fieldtype": "Link",
    "label": "Country",
    "options": "Country"
-<<<<<<< HEAD
-=======
-  },
-  {
-   "fieldname": "column_break_emai",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "utm_source",
-   "fieldtype": "Link",
-   "label": "Source",
-   "oldfieldname": "source",
-   "oldfieldtype": "Select",
-   "options": "UTM Source",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "utm_campaign",
-   "fieldtype": "Link",
-   "label": "Campaign",
-   "oldfieldname": "campaign",
-   "oldfieldtype": "Link",
-   "options": "UTM Campaign",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "section_break_analytics",
-   "fieldtype": "Section Break",
-   "label": "Analytics"
-  },
-  {
-   "fieldname": "column_break_whcu",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "utm_medium",
-   "fieldtype": "Link",
-   "label": "Medium",
-   "options": "UTM Medium",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "utm_content",
-   "fieldtype": "Data",
-   "label": "Content",
-   "print_hide": 1
->>>>>>> 0426b37f32 (fix: use label "State/Province" for translatability (#48273))
   }
  ],
  "grid_page_length": 50,
