@@ -1388,16 +1388,18 @@ class TestPickList(IntegrationTestCase):
 
 		make_product_bundle(item_1, items=[item_2, item_3])
 
-		stock_entry_1 = make_stock_entry(item=item_2, to_warehouse=warehouse_1, qty=50, basic_rate=100)
-		stock_entry_2 = make_stock_entry(item=item_3, to_warehouse=warehouse_2, qty=50, basic_rate=100)
+		stock_entry_1 = make_stock_entry(item=item_2, to_warehouse=warehouse_1, qty=10, basic_rate=100)
+		stock_entry_2 = make_stock_entry(item=item_3, to_warehouse=warehouse_1, qty=4, basic_rate=100)
+		stock_entry_3 = make_stock_entry(item=item_3, to_warehouse=warehouse_2, qty=6, basic_rate=100)
 
 		sales_order = make_sales_order(item_code=item_1, qty=10, rate=100)
 
 		pick_list = create_pick_list(sales_order.name)
 		pick_list.submit()
-
+		self.assertEqual(len(pick_list.locations), 3)
 		delivery_note = create_delivery_note(pick_list.name)
 
+		self.assertEqual(delivery_note.items[0].qty, 10)
 		self.assertEqual(delivery_note.packed_items[0].warehouse, warehouse_1)
 		self.assertEqual(delivery_note.packed_items[1].warehouse, warehouse_2)
 
@@ -1405,6 +1407,7 @@ class TestPickList(IntegrationTestCase):
 		sales_order.cancel()
 		stock_entry_1.cancel()
 		stock_entry_2.cancel()
+		stock_entry_3.cancel()
 
 	def test_pick_list_with_and_without_so(self):
 		warehouse = "_Test Warehouse - _TC"
