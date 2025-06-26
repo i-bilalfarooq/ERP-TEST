@@ -977,7 +977,6 @@ def create_payment(doc, idx, payment_details, current_date):
 	payment.parent = doc.name
 	payment.parentfield = "payments"
 	payment.parenttype = doc.doctype
-	payment.clearance_date = current_date
 	payment.account = get_bank_cash_account(payment.mode_of_payment, doc.company).get("account")
 
 	return payment
