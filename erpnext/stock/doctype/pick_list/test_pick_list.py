@@ -5,11 +5,12 @@ import frappe
 from frappe import _dict
 from frappe.tests import IntegrationTestCase
 
+from erpnext.selling.doctype.product_bundle.test_product_bundle import make_product_bundle
 from erpnext.selling.doctype.sales_order.sales_order import create_pick_list
 from erpnext.selling.doctype.sales_order.test_sales_order import make_sales_order
 from erpnext.stock.doctype.item.test_item import create_item, make_item
 from erpnext.stock.doctype.packed_item.test_packed_item import create_product_bundle
-from erpnext.stock.doctype.pick_list.pick_list import create_delivery_note
+from erpnext.stock.doctype.pick_list.pick_list import create_delivery_note, create_dn_for_pick_lists
 from erpnext.stock.doctype.purchase_receipt.test_purchase_receipt import make_purchase_receipt
 from erpnext.stock.doctype.serial_and_batch_bundle.test_serial_and_batch_bundle import (
 	get_batch_from_bundle,
@@ -1375,5 +1376,109 @@ class TestPickList(IntegrationTestCase):
 		pick_list_2.cancel()
 		delivery_note.cancel()
 		sales_order.reload()
+		sales_order.cancel()
+		stock_entry.cancel()
+
+	def test_packed_item_in_pick_list(self):
+		warehouse_1 = "RJ Warehouse - _TC"
+		warehouse_2 = "_Test Warehouse 2 - _TC"
+		item_1 = make_item(properties={"is_stock_item": 0}).name
+		item_2 = make_item().name
+		item_3 = make_item().name
+
+		make_product_bundle(item_1, items=[item_2, item_3])
+
+		stock_entry_1 = make_stock_entry(item=item_2, to_warehouse=warehouse_1, qty=500, basic_rate=100)
+		stock_entry_2 = make_stock_entry(item=item_3, to_warehouse=warehouse_2, qty=500, basic_rate=100)
+
+		sales_order = make_sales_order(item_code=item_1, qty=10, rate=100)
+
+		pick_list = frappe.get_doc(
+			{
+				"doctype": "Pick List",
+				"company": "_Test Company",
+				"customer": "_Test Customer",
+				"purpose": "Delivery",
+				"locations": [
+					{
+						"item_code": item_2,
+						"qty": 10,
+						"stock_qty": 10,
+						"warehouse": warehouse_1,
+						"picked_qty": 0,
+						"sales_order": sales_order.name,
+						"sales_order_item": sales_order.items[0].name,
+						"product_bundle_item": sales_order.packed_items[0].name,
+					},
+					{
+						"item_code": item_3,
+						"qty": 10,
+						"stock_qty": 10,
+						"warehouse": warehouse_2,
+						"picked_qty": 0,
+						"sales_order": sales_order.name,
+						"sales_order_item": sales_order.items[0].name,
+						"product_bundle_item": sales_order.packed_items[1].name,
+					},
+				],
+			}
+		)
+		pick_list.submit()
+
+		delivery_note = create_delivery_note(pick_list.name)
+
+		self.assertEqual(delivery_note.packed_items[0].warehouse, warehouse_1)
+		self.assertEqual(delivery_note.packed_items[1].warehouse, warehouse_2)
+
+		pick_list.cancel()
+		sales_order.cancel()
+		stock_entry_1.cancel()
+		stock_entry_2.cancel()
+
+	def test_pick_list_with_and_without_so(self):
+		warehouse = "_Test Warehouse - _TC"
+		item = make_item().name
+
+		sales_order = make_sales_order(item_code=item, qty=20, rate=100)
+		stock_entry = make_stock_entry(item=item, to_warehouse=warehouse, qty=500, basic_rate=100)
+
+		pick_list = frappe.get_doc(
+			{
+				"doctype": "Pick List",
+				"company": "_Test Company",
+				"customer": "_Test Customer",
+				"purpose": "Delivery",
+				"locations": [
+					{
+						"item_code": item,
+						"qty": 20,
+						"stock_qty": 20,
+						"warehouse": warehouse,
+						"picked_qty": 0,
+						"sales_order": sales_order.name,
+						"sales_order_item": sales_order.items[0].name,
+					},
+					{
+						"item_code": item,
+						"qty": 10,
+						"stock_qty": 10,
+						"warehouse": warehouse,
+						"picked_qty": 0,
+					},
+				],
+			}
+		)
+		pick_list.submit()
+
+		delivery_note = create_dn_for_pick_lists(pick_list.name)
+
+		self.assertEqual(delivery_note.items[0].against_pick_list, pick_list.name)
+		self.assertEqual(delivery_note.items[0].against_sales_order, sales_order.name)
+		self.assertEqual(delivery_note.items[0].qty, 20)
+
+		self.assertEqual(delivery_note.items[1].against_pick_list, pick_list.name)
+		self.assertEqual(delivery_note.items[1].qty, 10)
+
+		pick_list.cancel()
 		sales_order.cancel()
 		stock_entry.cancel()
