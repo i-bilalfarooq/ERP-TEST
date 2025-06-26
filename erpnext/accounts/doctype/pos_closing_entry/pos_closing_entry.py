@@ -243,9 +243,9 @@ class POSClosingEntry(StatusUpdater):
 	def check_pce_is_cancellable(self):
 		if frappe.db.exists("POS Opening Entry", {"pos_profile": self.pos_profile, "status": "Open"}):
 			frappe.throw(
-				title=_("POS Opening Entry Exists"),
+				title=_("Cannot cancel POS Closing Entry"),
 				msg=_(
-					"{0} is already opened. Close the POS or Cancel already existing POS Opening Entry to cancel this POS Closing Entry."
+					"POS Profile - {0} is currently open. Please close the POS or cancel the existing POS Opening Entry before cancelling this POS Closing Entry."
 				).format(frappe.bold(self.pos_profile)),
 			)
 

@@ -207,7 +207,7 @@ erpnext.PointOfSale.Controller = class {
 			frappe.msgprint({
 				title: __("Outdated POS Opening Entry"),
 				message: __(
-					"Current POS Opening Entry is outdated. Close the Existing and create a new Opening Entry."
+					"The current POS opening entry is outdated. Please close it and create a new one."
 				),
 				indicator: "yellow",
 			});

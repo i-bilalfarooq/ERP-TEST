@@ -1135,16 +1135,16 @@ class SalesInvoice(SellingController):
 			)
 		if len(opening_entries) > 1:
 			frappe.throw(
-				title=_("Too Many POS Opening Entry"),
+				title=_("Multiple POS Opening Entry"),
 				msg=_(
-					"Too Many POS Opening Entry exists for same POS Profile. Cancel or close them before proceeding."
-				),
+					"POS Profile - {0} has multiple open POS Opening Entries. Please close or cancel the existing entries before proceeding."
+				).format(self.pos_profile),
 			)
 		if frappe.utils.get_date_str(opening_entries[0].get("period_start_date")) != frappe.utils.today():
 			frappe.throw(
 				title=_("Outdated POS Opening Entry"),
 				msg=_(
-					"Current Open POS Opening Entry - {0} is outdated. Please close the POS and create a new Opening Entry."
+					"POS Opening Entry - {0} is outdated. Please close the POS and create a new POS Opening Entry."
 				).format(opening_entries[0].get("name")),
 			)
 

@@ -56,15 +56,15 @@ class POSOpeningEntry(StatusUpdater):
 			frappe.throw(
 				title=_("POS Opening Entry Exists"),
 				msg=_(
-					"{0} is already opened. Close the POS or Cancel already existing POS Opening Entry to create a new POS Opening Entry."
+					"{0} is open. Close the POS or cancel the existing POS Opening Entry to create a new POS Opening Entry."
 				).format(frappe.bold(self.pos_profile)),
 			)
 
 	def check_user_already_assigned(self):
 		if frappe.db.exists("POS Opening Entry", {"user": self.user, "status": "Open"}):
 			frappe.throw(
-				title=_("Cashier Already Assigned"),
-				msg=_("Cashier is already assigned to a POS."),
+				title=_("Cannot Assign Cashier"),
+				msg=_("Cashier is currently assigned to another POS."),
 			)
 
 	def validate_payment_method_account(self):
