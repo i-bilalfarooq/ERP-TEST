@@ -795,6 +795,9 @@ class POSInvoice(SalesInvoice):
 
 	@frappe.whitelist()
 	def update_payments(self, payments, paid_amount, outstanding_amount, change_amount, current_date):
+		if self.status == "Consolidated":
+			frappe.throw(_("Create Payment Entry for Consolidated POS Invoices."))
+
 		idx = self.payments[-1].idx
 
 		for d in payments:
