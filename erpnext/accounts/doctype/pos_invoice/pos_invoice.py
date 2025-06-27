@@ -794,24 +794,43 @@ class POSInvoice(SalesInvoice):
 			return frappe.get_doc("Payment Request", pr)
 
 	@frappe.whitelist()
-	def update_payments(self, payments, paid_amount, outstanding_amount, change_amount, current_date):
+	def update_payments(self, payments):
 		if self.status == "Consolidated":
 			frappe.throw(_("Create Payment Entry for Consolidated POS Invoices."))
 
-		idx = self.payments[-1].idx
+		paid_amount = flt(self.paid_amount)
+		total = flt(self.rounded_total) or flt(self.grand_total)
+
+		if paid_amount >= total:
+			frappe.throw(title=_("Invoice Paid"), msg=_("This invoice has already been paid."))
+
+		idx = self.payments[-1].idx if self.payments else -1
 
 		for d in payments:
 			idx += 1
-			payment = create_payments_on_invoice(self, idx, frappe._dict(d), current_date)
+			payment = create_payments_on_invoice(self, idx, frappe._dict(d))
+			paid_amount += flt(payment.amount)
 			payment.submit()
 
-		frappe.db.set_value(self.doctype, self.name, "paid_amount", paid_amount)
-		frappe.db.set_value(self.doctype, self.name, "base_paid_amount", paid_amount * self.conversion_rate)
-		frappe.db.set_value(self.doctype, self.name, "outstanding_amount", outstanding_amount)
-		frappe.db.set_value(self.doctype, self.name, "change_amount", change_amount)
-		frappe.db.set_value(
-			self.doctype, self.name, "base_change_amount", change_amount * self.conversion_rate
+		paid_amount = flt(flt(paid_amount), self.precision("paid_amount"))
+		base_paid_amount = flt(flt(paid_amount * self.conversion_rate), self.precision("base_paid_amount"))
+		outstanding_amount = (
+			flt(flt(total - paid_amount), self.precision("outstanding_amount")) if total > paid_amount else 0
 		)
+		change_amount = (
+			flt(flt(paid_amount - total), self.precision("change_amount")) if paid_amount > total else 0
+		)
+
+		pi = frappe.qb.DocType("POS Invoice")
+		query = (
+			frappe.qb.update(pi)
+			.set(pi.paid_amount, paid_amount)
+			.set(pi.base_paid_amount, base_paid_amount)
+			.set(pi.outstanding_amount, outstanding_amount)
+			.set(pi.change_amount, change_amount)
+			.where(pi.name == self.name)
+		)
+		query.run()
 		self.reload()
 
 		self.set_status(update=True)
@@ -969,7 +988,7 @@ def get_item_group(pos_profile):
 	return list(set(item_groups))
 
 
-def create_payments_on_invoice(doc, idx, payment_details, current_date):
+def create_payments_on_invoice(doc, idx, payment_details):
 	from erpnext.accounts.doctype.sales_invoice.sales_invoice import get_bank_cash_account
 
 	payment = frappe.new_doc("Sales Invoice Payment")
