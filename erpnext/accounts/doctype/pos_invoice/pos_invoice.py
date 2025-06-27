@@ -222,10 +222,11 @@ class POSInvoice(SalesInvoice):
 
 			validate_coupon_code(self.coupon_code)
 
+	def before_submit(self):
+		self.set_outstanding_amount()
+
 	def on_submit(self):
 		# create the loyalty point ledger entry if the customer is enrolled in any loyalty program
-		total = flt(self.rounded_total) or flt(self.grand_total)
-		self.outstanding_amount = total - flt(self.paid_amount) if total > flt(self.paid_amount) else 0
 		if not self.is_return and self.loyalty_program:
 			self.make_loyalty_point_entry()
 		elif self.is_return and self.return_against and self.loyalty_program:
@@ -528,6 +529,10 @@ class POSInvoice(SalesInvoice):
 					self.company, frappe.db.get_value("POS Profile", self.pos_profile, "company")
 				)
 			)
+
+	def set_outstanding_amount(self):
+		total = flt(self.rounded_total) or flt(self.grand_total)
+		self.outstanding_amount = total - flt(self.paid_amount) if total > flt(self.paid_amount) else 0
 
 	def validate_loyalty_transaction(self):
 		if self.redeem_loyalty_points and (
