@@ -802,7 +802,7 @@ class POSInvoice(SalesInvoice):
 
 		for d in payments:
 			idx += 1
-			payment = create_payment(self, idx, frappe._dict(d), current_date)
+			payment = create_payments_on_invoice(self, idx, frappe._dict(d), current_date)
 			payment.submit()
 
 		frappe.db.set_value(self.doctype, self.name, "paid_amount", paid_amount)
@@ -969,7 +969,7 @@ def get_item_group(pos_profile):
 	return list(set(item_groups))
 
 
-def create_payment(doc, idx, payment_details, current_date):
+def create_payments_on_invoice(doc, idx, payment_details, current_date):
 	from erpnext.accounts.doctype.sales_invoice.sales_invoice import get_bank_cash_account
 
 	payment = frappe.new_doc("Sales Invoice Payment")
