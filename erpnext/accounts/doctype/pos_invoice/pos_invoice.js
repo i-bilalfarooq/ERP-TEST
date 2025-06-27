@@ -66,7 +66,7 @@ erpnext.selling.POSInvoiceController = class POSInvoiceController extends erpnex
 
 		if (doc.docstatus == 1 && !doc.is_return) {
 			this.frm.add_custom_button(__("Return"), this.make_sales_return.bind(this), __("Create"));
-			if (["Partly Paid", "Overdue"].includes(doc.status)) {
+			if (["Partly Paid", "Overdue", "Unpaid"].includes(doc.status)) {
 				this.frm.add_custom_button(
 					__("Payment"),
 					this.collect_outstanding_payment.bind(this),
@@ -316,10 +316,6 @@ erpnext.selling.POSInvoiceController = class POSInvoiceController extends erpnex
 					method: "update_payments",
 					args: {
 						payments: values.payments.filter((d) => d.amount != 0),
-						paid_amount: flt(values.paid_amount),
-						outstanding_amount: flt(values.outstanding_amount),
-						change_amount: flt(values.change_amount),
-						current_date: frappe.datetime.nowdate(),
 					},
 					freeze: true,
 					callback: function (r) {
