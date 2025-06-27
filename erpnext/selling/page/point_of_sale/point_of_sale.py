@@ -478,7 +478,7 @@ def get_invoice_filters(doctype, status, name=None, customer=None):
 	if doctype == "POS Invoice":
 		filters["status"] = status
 		if status == "Partly Paid":
-			filters["status"] = ["in", ["Partly Paid", "Overdue"]]
+			filters["status"] = ["in", ["Partly Paid", "Overdue", "Unpaid"]]
 		return filters
 
 	if doctype == "Sales Invoice":
@@ -492,7 +492,7 @@ def get_invoice_filters(doctype, status, name=None, customer=None):
 			if status == "Draft":
 				filters["docstatus"] = 0
 			elif status == "Partly Paid":
-				filters["status"] = ["in", ["Partly Paid", "Overdue"]]
+				filters["status"] = ["in", ["Partly Paid", "Overdue", "Unpaid"]]
 			else:
 				filters["docstatus"] = 1
 				if status == "Paid":
