@@ -244,6 +244,10 @@ erpnext.PointOfSale.PastOrderSummary = class {
 		this.$summary_container.on("click", ".print-btn", () => {
 			this.print_receipt();
 		});
+
+		this.$summary_container.on("click", ".open-btn", () => {
+			this.events.open_in_form_view(this.doc.doctype, this.doc.name);
+		});
 	}
 
 	print_receipt() {
