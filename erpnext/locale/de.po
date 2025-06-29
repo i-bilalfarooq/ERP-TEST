@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: hello@frappe.io\n"
 "POT-Creation-Date: 2025-06-22 09:36+0000\n"
-"PO-Revision-Date: 2025-06-28 04:05\n"
+"PO-Revision-Date: 2025-06-29 04:19\n"
 "Last-Translator: hello@frappe.io\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4024,7 +4024,7 @@ msgstr "Alle Zuweisungen wurden erfolgreich abgeglichen"
 
 #: erpnext/support/doctype/issue/issue.js:109
 msgid "All communications including and above this shall be moved into the new Issue"
-msgstr "Alle Mitteilungen einschließlich und darüber sollen in die neue Ausgabe verschoben werden"
+msgstr "Alle Mitteilungen einschließlich und darüber sollen in die neue Anfrage verschoben werden"
 
 #: erpnext/manufacturing/doctype/production_plan/production_plan.py:922
 msgid "All items are already requested"
@@ -8137,7 +8137,7 @@ msgstr "Rechnungsnr."
 #. DocType 'Buying Settings'
 #: erpnext/buying/doctype/buying_settings/buying_settings.json
 msgid "Bill for Rejected Quantity in Purchase Invoice"
-msgstr ""
+msgstr "Rechnung für abgelehnte Menge in der Eingangsrechnung"
 
 #. Label of a Card Break in the Manufacturing Workspace
 #. Label of a Link in the Manufacturing Workspace
@@ -8743,7 +8743,7 @@ msgstr "BTU (Mittelwert)"
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
 msgid "Btu (Th)"
-msgstr ""
+msgstr "Btu (Th)"
 
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
@@ -8758,7 +8758,7 @@ msgstr "Btu/Minuten"
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
 msgid "Btu/Seconds"
-msgstr ""
+msgstr "Btu/Sekunde"
 
 #. Label of the budget_settings (Tab Break) field in DocType 'Accounts
 #. Settings'
@@ -9218,7 +9218,7 @@ msgstr "Kalorie (Lebensmittel)"
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
 msgid "Calorie (It)"
-msgstr ""
+msgstr "Kalorie (It)"
 
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
@@ -13210,7 +13210,7 @@ msgstr "Kontenplan erstellen, basierend auf"
 
 #: erpnext/stock/doctype/pick_list/pick_list.js:111
 msgid "Create Delivery Note"
-msgstr ""
+msgstr "Lieferschein erstellen"
 
 #: erpnext/stock/doctype/delivery_note/delivery_note_list.js:61
 msgid "Create Delivery Trip"
@@ -13699,7 +13699,7 @@ msgstr "Gutschriftbetrag"
 #: erpnext/accounts/doctype/sales_invoice/sales_invoice.json
 #: erpnext/accounts/doctype/sales_invoice/sales_invoice.py:266
 msgid "Credit Note Issued"
-msgstr "Gutschrift ausgelöst"
+msgstr "Gutschrift ausgestellt"
 
 #. Description of the 'Update Outstanding for Self' (Check) field in DocType
 #. 'Sales Invoice'
@@ -14677,17 +14677,17 @@ msgstr "Benennung der Kunden nach"
 #. Supplier'
 #: erpnext/buying/doctype/customer_number_at_supplier/customer_number_at_supplier.json
 msgid "Customer Number"
-msgstr ""
+msgstr "Kundennummer"
 
 #. Name of a DocType
 #: erpnext/buying/doctype/customer_number_at_supplier/customer_number_at_supplier.json
 msgid "Customer Number At Supplier"
-msgstr ""
+msgstr "Kundennummer beim Lieferanten"
 
 #. Label of the customer_numbers (Table) field in DocType 'Supplier'
 #: erpnext/buying/doctype/supplier/supplier.json
 msgid "Customer Numbers"
-msgstr ""
+msgstr "Kundennummern"
 
 #: erpnext/stock/report/delayed_item_report/delayed_item_report.py:165
 #: erpnext/stock/report/delayed_order_report/delayed_order_report.py:80
@@ -14974,7 +14974,7 @@ msgstr "Daten basierend auf"
 #. 'Accounts Settings'
 #: erpnext/accounts/doctype/accounts_settings/accounts_settings.json
 msgid "Data Fetch Method"
-msgstr ""
+msgstr "Datenabrufmethode"
 
 #. Label of the data_import_configuration_section (Section Break) field in
 #. DocType 'Bank'
@@ -16111,7 +16111,7 @@ msgstr "Gelöschte Dokumente"
 
 #: erpnext/edi/doctype/code_list/code_list.js:28
 msgid "Deleting {0} and all associated Common Code documents..."
-msgstr ""
+msgstr "Lösche {0} und alle zugehörigen Common Code Dokumente..."
 
 #: erpnext/setup/doctype/transaction_deletion_record/transaction_deletion_record.py:499
 msgid "Deletion in Progress!"
@@ -19454,7 +19454,7 @@ msgstr "Eigenkapital / Verbindlichkeitskonto"
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
 msgid "Erg"
-msgstr ""
+msgstr "ERG"
 
 #. Option for the 'Status' (Select) field in DocType 'Bank Statement Import'
 #. Option for the 'Status' (Select) field in DocType 'Ledger Merge'
@@ -20307,7 +20307,7 @@ msgstr "Faraday"
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
 msgid "Fathom"
-msgstr ""
+msgstr "Faden"
 
 #. Label of the fax (Data) field in DocType 'Lead'
 #. Label of the fax (Data) field in DocType 'Prospect'
@@ -26238,17 +26238,17 @@ msgstr "Anfrage"
 #. Name of a report
 #: erpnext/support/report/issue_analytics/issue_analytics.json
 msgid "Issue Analytics"
-msgstr ""
+msgstr "Anfragenanalyse"
 
 #. Label of the issue_credit_note (Check) field in DocType 'Delivery Note'
 #: erpnext/stock/doctype/delivery_note/delivery_note.json
 msgid "Issue Credit Note"
-msgstr "Gutschrift ausgeben"
+msgstr "Gutschrift ausstellen"
 
 #. Label of the complaint_date (Date) field in DocType 'Warranty Claim'
 #: erpnext/support/doctype/warranty_claim/warranty_claim.json
 msgid "Issue Date"
-msgstr "Ausstellungsdatum"
+msgstr "Anfragedatum"
 
 #: erpnext/stock/doctype/material_request/material_request.js:152
 msgid "Issue Material"
@@ -26263,17 +26263,17 @@ msgstr "Material ausgeben"
 #: erpnext/support/report/issue_summary/issue_summary.py:67
 #: erpnext/support/workspace/support/support.json
 msgid "Issue Priority"
-msgstr "Ausgabepriorität"
+msgstr "Anfragepriorität"
 
 #. Label of the issue_split_from (Link) field in DocType 'Issue'
 #: erpnext/support/doctype/issue/issue.json
 msgid "Issue Split From"
-msgstr ""
+msgstr "Anfrage abgespalten von"
 
 #. Name of a report
 #: erpnext/support/report/issue_summary/issue_summary.json
 msgid "Issue Summary"
-msgstr ""
+msgstr "Anfragenübersicht"
 
 #. Label of the issue_type (Link) field in DocType 'Issue'
 #. Name of a DocType
@@ -26284,7 +26284,7 @@ msgstr ""
 #: erpnext/support/report/issue_summary/issue_summary.py:56
 #: erpnext/support/workspace/support/support.json
 msgid "Issue Type"
-msgstr "Fehlertyp"
+msgstr "Anfragetyp"
 
 #. Description of the 'Is Rate Adjustment Entry (Debit Note)' (Check) field in
 #. DocType 'Sales Invoice'
@@ -28185,7 +28185,7 @@ msgstr "Bitte wählen Sie zuerst das Unternehmen aus"
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
 msgid "Kip"
-msgstr ""
+msgstr "Kip"
 
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
@@ -33940,7 +33940,7 @@ msgstr "Auftragszähler"
 #. Label of the order_date (Date) field in DocType 'Blanket Order'
 #: erpnext/manufacturing/doctype/blanket_order/blanket_order.json
 msgid "Order Date"
-msgstr ""
+msgstr "Bestelldatum"
 
 #. Label of the order_information_section (Section Break) field in DocType
 #. 'Delivery Stop'
@@ -33951,7 +33951,7 @@ msgstr "Bestellinformationen"
 #. Label of the order_no (Data) field in DocType 'Blanket Order'
 #: erpnext/manufacturing/doctype/blanket_order/blanket_order.json
 msgid "Order No"
-msgstr ""
+msgstr "Bestellnr."
 
 #: erpnext/buying/report/subcontract_order_summary/subcontract_order_summary.py:142
 #: erpnext/manufacturing/report/production_plan_summary/production_plan_summary.py:176
@@ -35394,7 +35394,7 @@ msgstr "Details der Partei"
 #. Label of the party_full_name (Data) field in DocType 'Contract'
 #: erpnext/crm/doctype/contract/contract.json
 msgid "Party Full Name"
-msgstr ""
+msgstr "Vollständiger Name der Partei"
 
 #. Label of the bank_party_iban (Data) field in DocType 'Bank Transaction'
 #: erpnext/accounts/doctype/bank_transaction/bank_transaction.json
@@ -35412,12 +35412,12 @@ msgstr "Informationen zur Partei"
 #. Label of the party_item_code (Data) field in DocType 'Blanket Order Item'
 #: erpnext/manufacturing/doctype/blanket_order_item/blanket_order_item.json
 msgid "Party Item Code"
-msgstr ""
+msgstr "Parteispezifischer Artikelcode"
 
 #. Name of a DocType
 #: erpnext/accounts/doctype/party_link/party_link.json
 msgid "Party Link"
-msgstr ""
+msgstr "Partei-Link"
 
 #. Label of the party_name (Data) field in DocType 'Payment Entry'
 #. Label of the party_name (Data) field in DocType 'Payment Request'
@@ -35511,7 +35511,7 @@ msgstr "Partei-Typ und Partei sind Pflichtfelder für Konto {0}"
 
 #: erpnext/accounts/doctype/bank_reconciliation_tool/bank_reconciliation_tool.py:161
 msgid "Party Type and Party is required for Receivable / Payable account {0}"
-msgstr ""
+msgstr "Parteityp und Partei sind für das Debitoren-/Kreditorenkonto erforderlich {0}"
 
 #: erpnext/accounts/doctype/payment_entry/payment_entry.py:516
 #: erpnext/accounts/party.py:428
@@ -35525,7 +35525,7 @@ msgstr "Benutzer der Partei"
 
 #: erpnext/accounts/doctype/payment_entry/payment_entry.js:455
 msgid "Party can only be one of {0}"
-msgstr ""
+msgstr "Die Partei kann nur eine von {0} sein"
 
 #: erpnext/accounts/doctype/payment_entry/payment_entry.py:519
 msgid "Party is mandatory"
@@ -35954,7 +35954,7 @@ msgstr "Rechnung zum Zahlungsabgleich"
 
 #: erpnext/accounts/doctype/payment_reconciliation/payment_reconciliation.js:123
 msgid "Payment Reconciliation Job: {0} is running for this party. Can't reconcile now."
-msgstr ""
+msgstr "Job für Zahlungsabgleich: {0} läuft für diese Partei. Kann jetzt nicht abgleichen."
 
 #. Name of a DocType
 #: erpnext/accounts/doctype/payment_reconciliation_payment/payment_reconciliation_payment.json
@@ -38035,7 +38035,7 @@ msgstr "Bitte richten Sie ein Gruppenkonto mit dem Kontotyp - {0} für die Firma
 
 #: erpnext/assets/doctype/asset/depreciation.py:348
 msgid "Please share this email with your support team so that they can find and fix the issue."
-msgstr ""
+msgstr "Bitte teilen Sie diese E-Mail mit Ihrem Support-Team, damit es das Problem finden und beheben kann."
 
 #: erpnext/public/js/controllers/transaction.js:2125
 msgid "Please specify"
@@ -44345,19 +44345,19 @@ msgstr "Datum des Kündigungsschreibens"
 #: erpnext/quality_management/doctype/quality_action_resolution/quality_action_resolution.json
 #: erpnext/support/doctype/warranty_claim/warranty_claim.json
 msgid "Resolution"
-msgstr "Entscheidung"
+msgstr "Lösung"
 
 #. Label of the sla_resolution_by (Datetime) field in DocType 'Issue'
 #: erpnext/support/doctype/issue/issue.json
 msgid "Resolution By"
-msgstr "Auflösung von"
+msgstr "Lösung durch"
 
 #. Label of the sla_resolution_date (Datetime) field in DocType 'Issue'
 #. Label of the resolution_date (Datetime) field in DocType 'Warranty Claim'
 #: erpnext/support/doctype/issue/issue.json
 #: erpnext/support/doctype/warranty_claim/warranty_claim.json
 msgid "Resolution Date"
-msgstr "Datum der Entscheidung"
+msgstr "Lösungsdatum"
 
 #. Label of the section_break_19 (Section Break) field in DocType 'Issue'
 #. Label of the resolution_details (Text Editor) field in DocType 'Issue'
@@ -44365,13 +44365,13 @@ msgstr "Datum der Entscheidung"
 #: erpnext/support/doctype/issue/issue.json
 #: erpnext/support/doctype/warranty_claim/warranty_claim.json
 msgid "Resolution Details"
-msgstr "Details zur Entscheidung"
+msgstr "Details zur Lösung"
 
 #. Option for the 'Service Level Agreement Status' (Select) field in DocType
 #. 'Issue'
 #: erpnext/support/doctype/issue/issue.json
 msgid "Resolution Due"
-msgstr "Auflösung fällig"
+msgstr "Lösung fällig"
 
 #. Label of the resolution_time (Duration) field in DocType 'Issue'
 #. Label of the resolution_time (Duration) field in DocType 'Service Level
@@ -44437,13 +44437,13 @@ msgstr "Antwort Ergebnis Schlüsselpfad"
 
 #: erpnext/support/doctype/service_level_agreement/service_level_agreement.py:99
 msgid "Response Time for {0} priority in row {1} can't be greater than Resolution Time."
-msgstr "Die Antwortzeit für die Priorität {0} in Zeile {1} darf nicht größer als die Auflösungszeit sein."
+msgstr "Die Antwortzeit für die Priorität {0} in Zeile {1} darf nicht größer als die Lösungszeit sein."
 
 #. Label of the response_and_resolution_time_section (Section Break) field in
 #. DocType 'Service Level Agreement'
 #: erpnext/support/doctype/service_level_agreement/service_level_agreement.json
 msgid "Response and Resolution"
-msgstr "Antwort und Auflösung"
+msgstr "Antwort und Lösung"
 
 #. Label of the responsible (Link) field in DocType 'Quality Action Resolution'
 #: erpnext/quality_management/doctype/quality_action_resolution/quality_action_resolution.json
@@ -45986,7 +45986,7 @@ msgstr "Zeile {0}: {1} muss größer als 0 sein"
 
 #: erpnext/controllers/accounts_controller.py:708
 msgid "Row {0}: {1} {2} cannot be same as {3} (Party Account) {4}"
-msgstr ""
+msgstr "Zeile {0}: {1} {2} kann nicht identisch mit {3} (Konto der Partei) {4} sein"
 
 #: erpnext/accounts/doctype/journal_entry/journal_entry.py:903
 msgid "Row {0}: {1} {2} does not match with {3}"
@@ -47450,12 +47450,12 @@ msgstr "Zweite E-Mail"
 #. Label of the secondary_party (Dynamic Link) field in DocType 'Party Link'
 #: erpnext/accounts/doctype/party_link/party_link.json
 msgid "Secondary Party"
-msgstr ""
+msgstr "Sekundäre Partei"
 
 #. Label of the secondary_role (Link) field in DocType 'Party Link'
 #: erpnext/accounts/doctype/party_link/party_link.json
 msgid "Secondary Role"
-msgstr ""
+msgstr "Sekundäre Rolle"
 
 #: erpnext/setup/setup_wizard/data/designation.txt:29
 msgid "Secretary"
@@ -49560,7 +49560,7 @@ msgstr "Verknüpfte Lieferscheine anzeigen"
 #: erpnext/accounts/doctype/process_statement_of_accounts/process_statement_of_accounts.json
 #: erpnext/accounts/report/general_ledger/general_ledger.js:197
 msgid "Show Net Values in Party Account"
-msgstr ""
+msgstr "Nettowerte im Konto der Partei anzeigen"
 
 #: erpnext/templates/pages/projects.js:63
 msgid "Show Open"
@@ -54432,11 +54432,11 @@ msgstr "Die Aufgabe wurde als Hintergrundjob in die Warteschlange gestellt. Fall
 
 #: erpnext/stock/doctype/material_request/material_request.py:313
 msgid "The total Issue / Transfer quantity {0} in Material Request {1}  cannot be greater than allowed requested quantity {2} for Item {3}"
-msgstr ""
+msgstr "Die gesamte Ausgabe-/Transfermenge {0} in der Materialanforderung {1} kann nicht größer sein als die zulässige angeforderte Menge {2} für Artikel {3}"
 
 #: erpnext/stock/doctype/material_request/material_request.py:320
 msgid "The total Issue / Transfer quantity {0} in Material Request {1} cannot be greater than requested quantity {2} for Item {3}"
-msgstr ""
+msgstr "Die gesamte Ausgabe-/Transfermenge {0} in der Materialanforderung {1} kann nicht größer sein als die zulässige angeforderte Menge {2} für Artikel {3}"
 
 #: erpnext/edi/doctype/code_list/code_list_import.py:48
 msgid "The uploaded file does not match the selected Code List."
@@ -56027,7 +56027,7 @@ msgstr "Gesamtrechnungsbetrag"
 
 #: erpnext/support/report/issue_summary/issue_summary.py:82
 msgid "Total Issues"
-msgstr ""
+msgstr "Summe Anfragen"
 
 #: erpnext/selling/page/point_of_sale/pos_item_cart.js:92
 msgid "Total Items"
@@ -58024,7 +58024,7 @@ msgstr "Benutzerbemerkung"
 #. Label of the user_resolution_time (Duration) field in DocType 'Issue'
 #: erpnext/support/doctype/issue/issue.json
 msgid "User Resolution Time"
-msgstr "Benutzerauflösungszeit"
+msgstr "Lösungszeit des Benutzers"
 
 #: erpnext/accounts/doctype/pricing_rule/utils.py:587
 msgid "User has not applied rule on the invoice {0}"
