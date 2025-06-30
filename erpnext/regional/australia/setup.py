@@ -1,8 +1,10 @@
 import frappe
 from frappe.desk.page.setup_wizard.setup_wizard import make_records
 
+
 def setup(company=None, patch=True):
 	pass
+
 
 def update_regional_tax_settings(country=None, company=None):
 	# tax rules
