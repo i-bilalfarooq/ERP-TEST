@@ -1124,8 +1124,6 @@ class PurchaseInvoice(BuyingController):
 
 			warehouse_debit_amount = stock_amount
 
-<<<<<<< HEAD
-=======
 		elif self.is_return and self.update_stock and (self.is_internal_supplier or not self.return_against):
 			net_rate = item.base_net_amount
 			if item.sales_incoming_rate:  # for internal transfer
@@ -1153,7 +1151,6 @@ class PurchaseInvoice(BuyingController):
 					)
 				)
 
->>>>>>> 52177cffcd (fix: accounting entries for standalone credit notes)
 		return warehouse_debit_amount
 
 	def make_tax_gl_entries(self, gl_entries):
