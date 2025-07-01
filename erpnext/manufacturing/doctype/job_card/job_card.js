@@ -50,20 +50,42 @@ frappe.ui.form.on("Job Card", {
 			let to_request = frm.doc.for_quantity > frm.doc.transferred_qty;
 			let excess_transfer_allowed = frm.doc.__onload.job_card_excess_transfer;
 
+<<<<<<< HEAD
 			if (to_request || excess_transfer_allowed) {
 				frm.add_custom_button(__("Material Request"), () => {
 					frm.trigger("make_material_request");
 				});
+=======
+			if (has_items && (to_request || excess_transfer_allowed)) {
+				frm.add_custom_button(
+					__("Material Request"),
+					() => {
+						frm.trigger("make_material_request");
+					},
+					__("Create")
+				);
+>>>>>>> 74df63a28a (fix: multiple button in job card showing in a single row)
 			}
 
 			// check if any row has untransferred materials
 			// in case of multiple items in JC
 			let to_transfer = frm.doc.items.some((row) => row.transferred_qty < row.required_qty);
 
+<<<<<<< HEAD
 			if (to_transfer || excess_transfer_allowed) {
 				frm.add_custom_button(__("Material Transfer"), () => {
 					frm.trigger("make_stock_entry");
 				}).addClass("btn-primary");
+=======
+			if (has_items && (to_transfer || excess_transfer_allowed)) {
+				frm.add_custom_button(
+					__("Material Transfer"),
+					() => {
+						frm.trigger("make_stock_entry");
+					},
+					__("Create")
+				);
+>>>>>>> 74df63a28a (fix: multiple button in job card showing in a single row)
 			}
 		}
 
