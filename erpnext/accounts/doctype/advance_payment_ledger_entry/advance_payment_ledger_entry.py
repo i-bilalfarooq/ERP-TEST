@@ -19,6 +19,7 @@ class AdvancePaymentLedgerEntry(Document):
 		amount: DF.Currency
 		company: DF.Link | None
 		currency: DF.Link | None
+		delinked: DF.Check
 		event: DF.Data | None
 		voucher_no: DF.DynamicLink | None
 		voucher_type: DF.Link | None

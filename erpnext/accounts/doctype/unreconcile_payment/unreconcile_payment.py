@@ -44,30 +44,11 @@ class UnreconcilePayment(Document):
 
 	@frappe.whitelist()
 	def get_allocations_from_payment(self):
-		allocated_references = []
-		ple = qb.DocType("Payment Ledger Entry")
-		allocated_references = (
-			qb.from_(ple)
-			.select(
-				ple.account,
-				ple.party_type,
-				ple.party,
-				ple.against_voucher_type.as_("reference_doctype"),
-				ple.against_voucher_no.as_("reference_name"),
-				Abs(Sum(ple.amount_in_account_currency)).as_("allocated_amount"),
-				ple.account_currency,
-			)
-			.where(
-				(ple.docstatus == 1)
-				& (ple.voucher_type == self.voucher_type)
-				& (ple.voucher_no == self.voucher_no)
-				& (ple.voucher_no != ple.against_voucher_no)
-			)
-			.groupby(ple.against_voucher_type, ple.against_voucher_no)
-			.run(as_dict=True)
+		return get_linked_payments_for_doc(
+			company=self.company,
+			doctype=self.voucher_type,
+			docname=self.voucher_no,
 		)
-
-		return allocated_references
 
 	def add_references(self):
 		allocations = self.get_allocations_from_payment()
@@ -77,33 +58,51 @@ class UnreconcilePayment(Document):
 
 	def on_submit(self):
 		# todo: more granular unreconciliation
+		advance_payment_doctypes = frappe.get_hooks("advance_payment_payable_doctypes") + frappe.get_hooks(
+			"advance_payment_receivable_doctypes"
+		)
+
 		for alloc in self.allocations:
 			doc = frappe.get_doc(alloc.reference_doctype, alloc.reference_name)
 			unlink_ref_doc_from_payment_entries(doc, self.voucher_no)
 			cancel_exchange_gain_loss_journal(doc, self.voucher_type, self.voucher_no)
-			update_voucher_outstanding(
-				alloc.reference_doctype, alloc.reference_name, alloc.account, alloc.party_type, alloc.party
-			)
-			if doc.doctype in frappe.get_hooks("advance_payment_payable_doctypes") + frappe.get_hooks(
-				"advance_payment_receivable_doctypes"
-			):
+
+			# update outstanding amounts
+			if doc.doctype in advance_payment_doctypes:
 				doc.set_total_advance_paid()
+			else:
+				update_voucher_outstanding(
+					alloc.reference_doctype,
+					alloc.reference_name,
+					alloc.account,
+					alloc.party_type,
+					alloc.party,
+				)
 
 			frappe.db.set_value("Unreconcile Payment Entries", alloc.name, "unlinked", True)
 
 
 @frappe.whitelist()
 def doc_has_references(doctype: str | None = None, docname: str | None = None):
+	count = 0
 	if doctype in ["Sales Invoice", "Purchase Invoice"]:
-		return frappe.db.count(
+		count = frappe.db.count(
 			"Payment Ledger Entry",
 			filters={"delinked": 0, "against_voucher_no": docname, "amount": ["<", 0]},
 		)
 	else:
-		return frappe.db.count(
+		count = frappe.db.count(
 			"Payment Ledger Entry",
 			filters={"delinked": 0, "voucher_no": docname, "against_voucher_no": ["!=", docname]},
 		)
+
+		if doctype == "Payment Entry":
+			count += frappe.db.count(
+				"Advance Payment Ledger Entry",
+				filters={"delinked": 0, "voucher_no": docname, "voucher_type": doctype},
+			)
+
+	return count
 
 
 @frappe.whitelist()
@@ -125,9 +124,12 @@ def get_linked_payments_for_doc(
 			res = (
 				qb.from_(ple)
 				.select(
+					ple.account,
+					ple.party_type,
+					ple.party,
 					ple.company,
-					ple.voucher_type,
-					ple.voucher_no,
+					ple.voucher_type.as_("reference_doctype"),
+					ple.voucher_no.as_("reference_name"),
 					Abs(Sum(ple.amount_in_account_currency)).as_("allocated_amount"),
 					ple.account_currency,
 				)
@@ -149,8 +151,11 @@ def get_linked_payments_for_doc(
 				qb.from_(ple)
 				.select(
 					ple.company,
-					ple.against_voucher_type.as_("voucher_type"),
-					ple.against_voucher_no.as_("voucher_no"),
+					ple.account,
+					ple.party_type,
+					ple.party,
+					ple.against_voucher_type.as_("reference_doctype"),
+					ple.against_voucher_no.as_("reference_name"),
 					Abs(Sum(ple.amount_in_account_currency)).as_("allocated_amount"),
 					ple.account_currency,
 				)
@@ -158,8 +163,40 @@ def get_linked_payments_for_doc(
 				.groupby(ple.against_voucher_no)
 			)
 			res = query.run(as_dict=True)
+
+			if _dt == "Payment Entry":
+				# Add advance payments linked to this payment entry
+				res += get_advance_linked_payments_for_doc(company, doctype, docname)
+
 			return res
+
 	return []
+
+
+def get_advance_linked_payments_for_doc(
+	company: str | None = None, doctype: str | None = None, docname: str | None = None
+) -> list:
+	if not (doctype and docname):
+		return []
+
+	ple = qb.DocType("Advance Payment Ledger Entry")
+	query = (
+		qb.from_(ple)
+		.select(
+			ple.company,
+			ple.against_voucher_type.as_("reference_doctype"),
+			ple.against_voucher_no.as_("reference_name"),
+			Abs(Sum(ple.amount)).as_("allocated_amount"),
+			ple.currency.as_("account_currency"),
+		)
+		.where(ple.delinked == 0)
+		.where(ple.voucher_no == docname)
+		.where(ple.voucher_type == doctype)
+		.where(ple.company == company)
+		.groupby(ple.against_voucher_no)
+	)
+
+	return query.run(as_dict=True)
 
 
 @frappe.whitelist()

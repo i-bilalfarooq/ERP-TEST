@@ -486,17 +486,10 @@ def reconcile_against_document(
 		doc = frappe.get_doc(voucher_type, voucher_no)
 		frappe.flags.ignore_party_validation = True
 
-		# When Advance is allocated from an Order to an Invoice
-		# whole ledger must be reposted
-		repost_whole_ledger = any([x.voucher_detail_no for x in entries])
-		if voucher_type == "Payment Entry" and doc.book_advance_payments_in_separate_party_account:
-			if repost_whole_ledger:
-				doc.make_gl_entries(cancel=1)
-			else:
-				doc.make_advance_gl_entries(cancel=1)
-		else:
+		if not (voucher_type == "Payment Entry" and doc.book_advance_payments_in_separate_party_account):
 			_delete_pl_entries(voucher_type, voucher_no)
 
+		reposting_rows = []
 		for entry in entries:
 			check_if_advance_entry_modified(entry)
 			validate_allocated_amount(entry)
@@ -521,20 +514,15 @@ def reconcile_against_document(
 					skip_ref_details_update_for_pe=skip_ref_details_update_for_pe,
 					dimensions_dict=dimensions_dict,
 				)
+				reposting_rows.append(referenced_row)
 
 		doc.save(ignore_permissions=True)
 		# re-submit advance entry
 		doc = frappe.get_doc(entry.voucher_type, entry.voucher_no)
 
 		if voucher_type == "Payment Entry" and doc.book_advance_payments_in_separate_party_account:
-			# When Advance is allocated from an Order to an Invoice
-			# whole ledger must be reposted
-			if repost_whole_ledger:
-				doc.make_gl_entries()
-			else:
-				# both ledgers must be posted to for `Advance` in separate account feature
-				# TODO: find a more efficient way post only for the new linked vouchers
-				doc.make_advance_gl_entries()
+			for row in reposting_rows:
+				doc.make_advance_gl_entries(entry=row)
 		else:
 			gl_map = doc.build_gl_map()
 			# Make sure there is no overallocation
@@ -765,12 +753,14 @@ def update_reference_in_payment_entry(
 
 			new_row = payment_entry.append("references")
 			new_row.docstatus = 1
+			new_row.set_new_name()
 			for field in list(reference_details):
 				new_row.set(field, reference_details[field])
 			row = new_row
 	else:
 		new_row = payment_entry.append("references")
 		new_row.docstatus = 1
+		new_row.set_new_name()
 		new_row.update(reference_details)
 		row = new_row
 
@@ -1029,6 +1019,9 @@ def remove_ref_doc_link_from_pe(
 	# remove reference only from specified payment
 	linked_pe = [x for x in linked_pe if x == payment_name] if payment_name else linked_pe
 
+	advance_payment_doctypes = (frappe.get_hooks("advance_payment_receivable_doctypes") or []) + (
+		frappe.get_hooks("advance_payment_payable_doctypes") or []
+	)
 	if linked_pe:
 		update_query = (
 			qb.update(per)
@@ -1049,12 +1042,12 @@ def remove_ref_doc_link_from_pe(
 				pe_doc.set_amounts()
 
 				# Call cancel on only removed reference
-				references = [
-					x
-					for x in pe_doc.references
-					if x.reference_doctype == ref_type and x.reference_name == ref_no
-				]
-				[pe_doc.make_advance_gl_entries(x, cancel=1) for x in references]
+				for refrences in pe_doc.references:
+					if refrences.reference_doctype == ref_type and refrences.reference_name == ref_no:
+						if refrences.reference_doctype in advance_payment_doctypes:
+							pe_doc.mark_advance_payment_ledger_as_delinked(refrences)
+						else:
+							pe_doc.make_advance_gl_entries(refrences, cancel=1)
 
 				pe_doc.clear_unallocated_reference_document_rows()
 				pe_doc.validate_payment_type_with_outstanding()
