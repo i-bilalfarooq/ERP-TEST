@@ -6,21 +6,21 @@ def get_leads_to_summary():
 	# pancake_conversation_id is not null and c.pancake_page_id is not null
 	# last_message_customer exist  -> if null mean customer not replied
 	# last_message_customer > last_migration  | last_migration is null
-	# lead does not own opportunity -> lead has opportunity dont need to convert 
-	
+	# lead does not own opportunity -> lead has opportunity dont need to convert
+
     sql=f"""
     SELECT
     c.pancake_conversation_id,
     c.pancake_page_id
     FROM
         tabContact c
-    WHERE 
+    WHERE
     c.pancake_conversation_id IS NOT NULL
     AND c.pancake_page_id IS NOT NULL
     AND c.last_message_time IS NOT NULL
     AND (c.last_summarize_time IS NULL
         OR c.last_message_time > c.last_summarize_time)
-    AND c.name  NOT IN (
+    AND c.name IN (
         SELECT
             tdl.parent
         FROM
@@ -40,7 +40,7 @@ def get_leads_to_summary():
                         WHERE
                             tOp.opportunity_from = 'Lead'
                     )
-                AND tl.first_reach_at < '{config.FIRST_REACH_AT_LIMIT_SUMMARY}'
+                AND tl.first_reach_at >= '{FIRST_REACH_AT_LIMIT_SUMMARY}'
             )
             AND tdl.parenttype = 'Contact'
     )
@@ -52,10 +52,10 @@ def get_leads_to_summary():
 
 def get_lead_name_by_conversation_id(conversation_id: str):
 	query = """
-    SELECT tdl.link_name 
+    SELECT tdl.link_name
     FROM tabContact tc
-    JOIN `tabDynamic Link` tdl 
-        ON tc.name = tdl.parent 
+    JOIN `tabDynamic Link` tdl
+        ON tc.name = tdl.parent
         AND tdl.parenttype = 'Contact'
     WHERE tc.pancake_conversation_id = %s
 	"""
@@ -67,7 +67,7 @@ def get_lead_name_by_conversation_id(conversation_id: str):
 	return None
 
 def get_lead_by_name(lead_name: str):
-	
+
     lead= None
     try:
         lead = frappe.get_doc("Lead", {

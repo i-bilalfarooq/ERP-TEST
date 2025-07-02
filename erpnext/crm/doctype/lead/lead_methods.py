@@ -11,7 +11,6 @@ from erpnext.crm.doctype.lead.lead_dao import (
 from erpnext.crm.doctype.lead_budget.lead_budget_dao import find_range_budget
 from erpnext.crm.doctype.lead_demand.lead_demand_dao import get_lead_purpose
 from erpnext.config.config import config
-from erpnext.packages.ai_hub.ai_hub import AIHubClient
 from frappe.www.contact import get_contacts_by_conversation_id
 
 import frappe 
@@ -301,25 +300,6 @@ def find_budget_tag(tags):
         if tag in VALID_BUDGET_TAGS:
             return tag
     return None
-
-def get_leads_to_summary_from_pancake():
-	
-	print("Start cron summary")
-	pancakes = get_leads_to_summary()
-	ai_hub_client  = AIHubClient(
-		url=config.AI_HUB_URL, 
-		token = config.AI_HUB_ACCESS_TOKEN, 
-		webhook_url= config.AI_HUB_WEBHOOK
-	)
-
-	print("pancakes conversation", pancakes)
-	for pancake in pancakes:
-		data = asyncio.run(
-			ai_hub_client.summary_lead_conversation(
-				pancake.pancake_conversation_id,
-				pancake.pancake_page_id
-			)
-		)
 
 def get_lead_province(province : str):
 	lead_province = None
