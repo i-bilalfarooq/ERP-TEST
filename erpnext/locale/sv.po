@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: hello@frappe.io\n"
 "POT-Creation-Date: 2025-06-29 09:36+0000\n"
-"PO-Revision-Date: 2025-07-01 05:04\n"
+"PO-Revision-Date: 2025-07-02 05:23\n"
 "Last-Translator: hello@frappe.io\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2155,7 +2155,7 @@ msgstr "Fordring Rabatt Konto"
 #: erpnext/accounts/report/accounts_receivable_summary/accounts_receivable_summary.json
 #: erpnext/accounts/workspace/receivables/receivables.json
 msgid "Accounts Receivable Summary"
-msgstr "Fordring Översikt"
+msgstr "Fordringar Översikt"
 
 #. Label of the accounts_receivable_unpaid (Link) field in DocType 'Invoice
 #. Discounting'
@@ -22707,7 +22707,7 @@ msgstr "Totalt Belopp (Bolag Valuta)"
 #: erpnext/stock/doctype/delivery_note_item/delivery_note_item.json
 #: erpnext/stock/doctype/item/item.json
 msgid "Grant Commission"
-msgstr "Bevilja Provision"
+msgstr "Tillåt Provision"
 
 #: erpnext/accounts/doctype/payment_entry/payment_entry.js:874
 msgid "Greater Than Amount"
@@ -30584,7 +30584,7 @@ msgstr "Megawatt"
 
 #: erpnext/stock/stock_ledger.py:1893
 msgid "Mention Valuation Rate in the Item master."
-msgstr "Ange Värderingssats i Artikel Inställningar."
+msgstr "Ange Grund Pris i Artikel Inställningar."
 
 #. Description of the 'Accounts' (Table) field in DocType 'Customer'
 #: erpnext/selling/doctype/customer/customer.json
@@ -33788,7 +33788,7 @@ msgstr "Åtgärder"
 #. Creator'
 #: erpnext/manufacturing/doctype/bom_creator/bom_creator.json
 msgid "Operations Routing"
-msgstr "Åtgärder Rutt"
+msgstr "Åtgärd Ordning"
 
 #: erpnext/manufacturing/doctype/bom/bom.py:1050
 msgid "Operations cannot be left blank"
@@ -38182,7 +38182,7 @@ msgstr "Ange minst en Egenskap i Egenskap Tabell"
 
 #: erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py:613
 msgid "Please specify either Quantity or Valuation Rate or both"
-msgstr "Ange antingen Kvantitet eller Värderingssats eller båda"
+msgstr "Ange antingen Kvantitet eller Grund Pris eller båda"
 
 #: erpnext/stock/doctype/item_attribute/item_attribute.py:93
 msgid "Please specify from/to range"
@@ -49019,7 +49019,7 @@ msgstr "Till Lager"
 #. Creator'
 #: erpnext/manufacturing/doctype/bom_creator/bom_creator.json
 msgid "Set Valuation Rate Based on Source Warehouse"
-msgstr "Ange Värderingssats Baserad på Från Lager"
+msgstr "Ange Grund Pris Baserad på Från Lager"
 
 #. Label of the set_valuation_rate_for_rejected_materials (Check) field in
 #. DocType 'Buying Settings'
