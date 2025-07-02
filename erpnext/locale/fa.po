@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: hello@frappe.io\n"
 "POT-Creation-Date: 2025-06-29 09:36+0000\n"
-"PO-Revision-Date: 2025-06-30 04:47\n"
+"PO-Revision-Date: 2025-07-02 05:23\n"
 "Last-Translator: hello@frappe.io\n"
 "Language-Team: Persian\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr "«به‌روزرسانی موجودی» قابل بررسی نیست ز
 
 #: erpnext/accounts/doctype/sales_invoice/sales_invoice.py:381
 msgid "'Update Stock' cannot be checked for fixed asset sale"
-msgstr "به روز رسانی موجودی را نمی‌توان برای فروش دارایی ثابت علامت زد"
+msgstr "به‌روزرسانی موجودی را نمی‌توان برای فروش دارایی ثابت علامت زد"
 
 #: erpnext/accounts/doctype/bank_account/bank_account.py:65
 msgid "'{0}' account is already used by {1}. Use another account."
@@ -1509,7 +1509,7 @@ msgstr "حساب: <b>{0}</b> یک کار سرمایه ای در حال انجا�
 
 #: erpnext/accounts/doctype/journal_entry/journal_entry.py:368
 msgid "Account: {0} can only be updated via Stock Transactions"
-msgstr "حساب: {0} فقط از طریق معاملات موجودی قابل به روز رسانی است"
+msgstr "حساب: {0} فقط از طریق معاملات موجودی قابل به‌روزرسانی است"
 
 #: erpnext/accounts/doctype/payment_entry/payment_entry.py:2814
 msgid "Account: {0} is not permitted under Payment Entry"
@@ -5086,7 +5086,7 @@ msgstr "هنگام ارسال مجدد ارزیابی مورد از طریق {0}
 #: erpnext/public/js/controllers/buying.js:331
 #: erpnext/public/js/utils/sales_common.js:463
 msgid "An error occurred during the update process"
-msgstr "در طول فرآیند به روز رسانی خطایی رخ داد"
+msgstr "در طول فرآیند به‌روزرسانی خطایی رخ داد"
 
 #: erpnext/stock/reorder_item.py:378
 msgid "An error occurred for certain Items while creating Material Requests based on Re-order level. Please rectify these issues :"
@@ -7078,23 +7078,23 @@ msgstr "واحد اندازه گیری BOM"
 #. Name of a DocType
 #: erpnext/manufacturing/doctype/bom_update_batch/bom_update_batch.json
 msgid "BOM Update Batch"
-msgstr "دسته به روز رسانی BOM"
+msgstr "دسته به‌روزرسانی BOM"
 
 #: erpnext/manufacturing/doctype/bom_update_tool/bom_update_tool.js:84
 msgid "BOM Update Initiated"
-msgstr "به روز رسانی BOM آغاز شد"
+msgstr "به‌روزرسانی BOM آغاز شد"
 
 #. Name of a DocType
 #: erpnext/manufacturing/doctype/bom_update_log/bom_update_log.json
 msgid "BOM Update Log"
-msgstr "لاگ به روز رسانی BOM"
+msgstr "لاگ به‌روزرسانی BOM"
 
 #. Name of a DocType
 #. Label of a Link in the Manufacturing Workspace
 #: erpnext/manufacturing/doctype/bom_update_tool/bom_update_tool.json
 #: erpnext/manufacturing/workspace/manufacturing/manufacturing.json
 msgid "BOM Update Tool"
-msgstr "ابزار به روز رسانی BOM"
+msgstr "ابزار به‌روزرسانی BOM"
 
 #. Description of a DocType
 #: erpnext/manufacturing/doctype/bom_update_log/bom_update_log.json
@@ -7107,7 +7107,7 @@ msgstr "به‌روزرسانی BOM در حال انجام است. لطفاً ص
 
 #: erpnext/manufacturing/doctype/bom_update_tool/bom_update_tool.js:81
 msgid "BOM Updation is queued and may take a few minutes. Check {0} for progress."
-msgstr "به روز رسانی BOM در صف است و ممکن است چند دقیقه طول بکشد. برای پیشرفت، {0} را بررسی کنید."
+msgstr "به‌روزرسانی BOM در صف است و ممکن است چند دقیقه طول بکشد. برای پیشرفت، {0} را بررسی کنید."
 
 #. Name of a report
 #: erpnext/manufacturing/report/bom_variance_report/bom_variance_report.json
@@ -8806,7 +8806,7 @@ msgstr "جزئیات لاگ تراکنش های انبوه"
 #. Label of a Link in the Settings Workspace
 #: erpnext/setup/workspace/settings/settings.json
 msgid "Bulk Update"
-msgstr "به روز رسانی انبوه"
+msgstr "به‌روزرسانی انبوه"
 
 #. Label of the packed_items (Table) field in DocType 'Quotation'
 #. Label of the bundle_items_section (Section Break) field in DocType
@@ -9628,7 +9628,7 @@ msgstr "نمی‌توان شماره ردیف را بزرگتر یا مساوی 
 
 #: erpnext/accounts/doctype/bank/bank.js:66
 msgid "Cannot retrieve link token for update. Check Error Log for more information"
-msgstr "نمی‌توان توکن پیوند را برای به روز رسانی بازیابی کرد. برای اطلاعات بیشتر Log خطا را بررسی کنید"
+msgstr "نمی‌توان توکن پیوند را برای به‌روزرسانی بازیابی کرد. برای اطلاعات بیشتر Log خطا را بررسی کنید"
 
 #: erpnext/erpnext_integrations/doctype/plaid_settings/plaid_settings.js:68
 msgid "Cannot retrieve link token. Check Error Log for more information"
@@ -10687,7 +10687,7 @@ msgstr "ستون {0}"
 
 #: erpnext/accounts/doctype/chart_of_accounts_importer/chart_of_accounts_importer.py:52
 msgid "Columns are not according to template. Please compare the uploaded file with standard template"
-msgstr "ستون ها مطابق با الگو نیستند. لطفا فایل آپلود شده را با قالب استاندارد مقایسه کنید"
+msgstr "ستون‌ها مطابق با الگو نیستند. لطفا فایل آپلود شده را با قالب استاندارد مقایسه کنید"
 
 #: erpnext/accounts/doctype/payment_terms_template/payment_terms_template.py:39
 msgid "Combined invoice portion must equal 100%"
@@ -13158,7 +13158,7 @@ msgstr "ایجاد نمودار حساب بر اساس"
 
 #: erpnext/stock/doctype/pick_list/pick_list.js:111
 msgid "Create Delivery Note"
-msgstr ""
+msgstr "ایجاد یادداشت تحویل"
 
 #: erpnext/stock/doctype/delivery_note/delivery_note_list.js:61
 msgid "Create Delivery Trip"
@@ -16075,7 +16075,7 @@ msgstr "حذف برای کشور {0} مجاز نیست"
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Delimiter options"
-msgstr ""
+msgstr "گزینه‌های جداکننده"
 
 #. Option for the 'Status' (Select) field in DocType 'Purchase Order'
 #. Option for the 'Status' (Select) field in DocType 'Serial No'
@@ -17277,7 +17277,7 @@ msgstr "مجزا کردن (دیس اسمبل)"
 
 #: erpnext/manufacturing/doctype/work_order/work_order.js:217
 msgid "Disassemble Order"
-msgstr ""
+msgstr "سفارش جداسازی قطعات"
 
 #: erpnext/accounts/doctype/invoice_discounting/invoice_discounting.js:64
 msgid "Disburse Loan"
@@ -17374,7 +17374,7 @@ msgstr "مبلغ تخفیف"
 
 #: erpnext/accounts/report/calculated_discount_mismatch/calculated_discount_mismatch.py:58
 msgid "Discount Amount in Transaction"
-msgstr ""
+msgstr "مبلغ تخفیف در تراکنش"
 
 #. Label of the discount_date (Date) field in DocType 'Payment Schedule'
 #: erpnext/accounts/doctype/payment_schedule/payment_schedule.json
@@ -17394,7 +17394,7 @@ msgstr "درصد تخفیف"
 
 #: erpnext/accounts/report/calculated_discount_mismatch/calculated_discount_mismatch.py:52
 msgid "Discount Percentage in Transaction"
-msgstr ""
+msgstr "درصد تخفیف در تراکنش"
 
 #. Label of the section_break_8 (Section Break) field in DocType 'Payment Term'
 #. Label of the section_break_8 (Section Break) field in DocType 'Payment Terms
@@ -18051,7 +18051,7 @@ msgstr "دکتر"
 
 #: erpnext/accounts/report/customer_ledger_summary/customer_ledger_summary.py:246
 msgid "Dr/Cr"
-msgstr ""
+msgstr "بد/بس"
 
 #. Option for the 'Status' (Select) field in DocType 'Dunning'
 #. Option for the 'Status' (Select) field in DocType 'Invoice Discounting'
@@ -19445,7 +19445,7 @@ msgstr "خطا رخ داده است"
 
 #: erpnext/telephony/doctype/call_log/call_log.py:195
 msgid "Error during caller information update"
-msgstr "خطا در حین به روز رسانی اطلاعات تماس گیرنده"
+msgstr "خطا در حین به‌روزرسانی اطلاعات تماس گیرنده"
 
 #: erpnext/buying/doctype/supplier_scorecard_criteria/supplier_scorecard_criteria.py:53
 msgid "Error evaluating the criteria formula"
@@ -19815,7 +19815,7 @@ msgstr "تاریخ پایان مورد انتظار"
 
 #: erpnext/projects/doctype/task/task.py:108
 msgid "Expected End Date should be less than or equal to parent task's Expected End Date {0}."
-msgstr ""
+msgstr "تاریخ پایان مورد انتظار باید کمتر یا مساوی با تاریخ پایان مورد انتظار تسک والد {0} باشد."
 
 #. Label of the expected_hours (Float) field in DocType 'Timesheet Detail'
 #: erpnext/projects/doctype/timesheet_detail/timesheet_detail.json
@@ -22139,7 +22139,7 @@ msgstr "دریافت تخصیص ها"
 #. 'Journal Entry'
 #: erpnext/accounts/doctype/journal_entry/journal_entry.json
 msgid "Get Balance"
-msgstr ""
+msgstr "دریافت تراز"
 
 #. Label of the get_current_stock (Button) field in DocType 'Purchase Receipt'
 #. Label of the get_current_stock (Button) field in DocType 'Subcontracting
@@ -22237,7 +22237,7 @@ msgstr "دریافت آیتم‌ها از"
 #. 'Landed Cost Voucher'
 #: erpnext/stock/doctype/landed_cost_voucher/landed_cost_voucher.json
 msgid "Get Items From Receipts"
-msgstr ""
+msgstr "دریافت آیتم‌ها از رسیدها"
 
 #. Label of the transfer_materials (Button) field in DocType 'Production Plan'
 #: erpnext/manufacturing/doctype/production_plan/production_plan.json
@@ -23137,7 +23137,7 @@ msgstr "مخفی کردن تصاویر"
 
 #: erpnext/selling/page/point_of_sale/pos_controller.js:297
 msgid "Hide Recent Orders"
-msgstr ""
+msgstr "پنهان کردن سفارش‌های اخیر"
 
 #. Label of the hide_unavailable_items (Check) field in DocType 'POS Profile'
 #: erpnext/accounts/doctype/pos_profile/pos_profile.json
@@ -27827,7 +27827,7 @@ msgstr "برنامه ریزی کارت کار و ظرفیت"
 
 #: erpnext/manufacturing/doctype/job_card/job_card.py:1291
 msgid "Job Card {0} has been completed"
-msgstr ""
+msgstr "کارت کار {0} تکمیل شده است"
 
 #. Label of the dashboard_tab (Tab Break) field in DocType 'Workstation'
 #: erpnext/manufacturing/doctype/workstation/workstation.json
@@ -31992,7 +31992,7 @@ msgstr "درآمد جدید"
 
 #: erpnext/selling/page/point_of_sale/pos_controller.js:259
 msgid "New Invoice"
-msgstr ""
+msgstr "فاکتور جدید"
 
 #: erpnext/assets/doctype/location/location_tree.js:23
 msgid "New Location"
@@ -35397,7 +35397,7 @@ msgstr "جزئیات طرف"
 #. Label of the party_full_name (Data) field in DocType 'Contract'
 #: erpnext/crm/doctype/contract/contract.json
 msgid "Party Full Name"
-msgstr ""
+msgstr "نام کامل طرف"
 
 #. Label of the bank_party_iban (Data) field in DocType 'Bank Transaction'
 #: erpnext/accounts/doctype/bank_transaction/bank_transaction.json
@@ -36252,11 +36252,11 @@ msgstr "مبلغ پرداختی"
 
 #: erpnext/accounts/doctype/pos_invoice/pos_invoice.js:330
 msgid "Payments could not be updated."
-msgstr ""
+msgstr "پرداخت‌ها قابل به‌روزرسانی نبودند."
 
 #: erpnext/accounts/doctype/pos_invoice/pos_invoice.js:324
 msgid "Payments updated."
-msgstr ""
+msgstr "پرداخت‌ها به‌روزرسانی شد."
 
 #. Option for the 'Reference Type' (Select) field in DocType 'Journal Entry
 #. Account'
@@ -36608,7 +36608,7 @@ msgstr "Period_from_date"
 #. Entry'
 #: erpnext/accounts/doctype/journal_entry/journal_entry.json
 msgid "Periodic Accounting"
-msgstr ""
+msgstr "حسابداری دوره‌ای"
 
 #. Option for the 'Entry Type' (Select) field in DocType 'Journal Entry'
 #: erpnext/accounts/doctype/journal_entry/journal_entry.json
@@ -37607,7 +37607,7 @@ msgstr "لطفاً تاریخ شروع و تاریخ پایان را برای م
 
 #: erpnext/accounts/doctype/journal_entry/journal_entry.py:270
 msgid "Please select Stock Asset Account"
-msgstr ""
+msgstr "لطفا حساب دارایی موجودی را انتخاب کنید"
 
 #: erpnext/stock/doctype/stock_entry/stock_entry.py:1320
 msgid "Please select Subcontracting Order instead of Purchase Order {0}"
@@ -39952,11 +39952,11 @@ msgstr "نوع پروژه"
 #: erpnext/projects/doctype/project_update/project_update.json
 #: erpnext/projects/workspace/projects/projects.json
 msgid "Project Update"
-msgstr "به روز رسانی پروژه"
+msgstr "به‌روزرسانی پروژه"
 
 #: erpnext/config/projects.py:44
 msgid "Project Update."
-msgstr "به روز رسانی پروژه"
+msgstr "به‌روزرسانی پروژه"
 
 #. Name of a DocType
 #: erpnext/projects/doctype/project_user/project_user.json
@@ -42507,13 +42507,13 @@ msgstr "نوع سند رسید"
 #. Label of the items (Table) field in DocType 'Landed Cost Voucher'
 #: erpnext/stock/doctype/landed_cost_voucher/landed_cost_voucher.json
 msgid "Receipt Items"
-msgstr ""
+msgstr "آیتم‌های رسید"
 
 #. Label of the purchase_receipts (Table) field in DocType 'Landed Cost
 #. Voucher'
 #: erpnext/stock/doctype/landed_cost_voucher/landed_cost_voucher.json
 msgid "Receipts"
-msgstr ""
+msgstr "رسیدها"
 
 #. Option for the 'Account Type' (Select) field in DocType 'Account'
 #. Option for the 'Account Type' (Select) field in DocType 'Payment Ledger
@@ -46968,7 +46968,7 @@ msgstr "تیم فروش"
 #. Settings'
 #: erpnext/selling/doctype/selling_settings/selling_settings.json
 msgid "Sales Update Frequency in Company and Project"
-msgstr "فرکانس به روز رسانی فروش در شرکت و پروژه"
+msgstr "فرکانس به‌روزرسانی فروش در شرکت و پروژه"
 
 #. Name of a role
 #: erpnext/accounts/doctype/account/account.json
@@ -47146,7 +47146,7 @@ msgstr "ذخیره"
 #. Profile'
 #: erpnext/accounts/doctype/pos_profile/pos_profile.json
 msgid "Save Changes and Load New Invoice"
-msgstr ""
+msgstr "ذخیره تغییرات و بارگذاری فاکتور جدید"
 
 #: erpnext/templates/includes/order/order_taxes.html:34
 #: erpnext/templates/includes/order/order_taxes.html:85
@@ -48749,7 +48749,7 @@ msgstr "تاریخ توقف سرویس نمی‌تواند قبل از تاری�
 
 #: erpnext/assets/doctype/asset_repair/asset_repair.py:99
 msgid "Service item not present in Purchase Invoice {0}"
-msgstr ""
+msgstr "آیتم خدماتی در فاکتور خرید {0} موجود نیست"
 
 #. Label of the service_items (Table) field in DocType 'Asset Capitalization'
 #: erpnext/assets/doctype/asset_capitalization/asset_capitalization.json
@@ -50711,7 +50711,7 @@ msgstr "تجزیه و تحلیل موجودی"
 #. Label of the stock_asset_account (Link) field in DocType 'Journal Entry'
 #: erpnext/accounts/doctype/journal_entry/journal_entry.json
 msgid "Stock Asset Account"
-msgstr ""
+msgstr "حساب دارایی موجودی"
 
 #: erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts.py:19
 #: erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts_with_account_number.py:30
@@ -50828,7 +50828,7 @@ msgstr "جزئیات ثبت موجودی"
 #. Label of the stock_entry_item (Data) field in DocType 'Landed Cost Item'
 #: erpnext/stock/doctype/landed_cost_item/landed_cost_item.json
 msgid "Stock Entry Item"
-msgstr ""
+msgstr "آیتم ثبت موجودی"
 
 #. Label of the stock_entry_type (Link) field in DocType 'Stock Entry'
 #. Name of a DocType
@@ -52444,7 +52444,7 @@ msgstr "نامگذاری تامین کننده توسط"
 #. Customer'
 #: erpnext/selling/doctype/supplier_number_at_customer/supplier_number_at_customer.json
 msgid "Supplier Number"
-msgstr ""
+msgstr "شماره تأمین‌کننده"
 
 #. Name of a DocType
 #: erpnext/selling/doctype/supplier_number_at_customer/supplier_number_at_customer.json
@@ -54275,7 +54275,7 @@ msgstr "کارمندان زیر در حال حاضر همچنان به {0} گز�
 
 #: erpnext/accounts/doctype/promotional_scheme/promotional_scheme.py:185
 msgid "The following invalid Pricing Rules are deleted:"
-msgstr ""
+msgstr "قوانین قیمت گذاری نامعتبر زیر حذف می‌شوند:"
 
 #: erpnext/stock/doctype/material_request/material_request.py:857
 msgid "The following {0} were created: {1}"
@@ -54462,7 +54462,7 @@ msgstr "مجموع مقدار حواله / انتقال {0} در درخواست 
 
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.py:121
 msgid "The uploaded file does not appear to be in valid MT940 format."
-msgstr ""
+msgstr "به نظر نمی‌رسد فایل آپلود شده فرمت معتبر MT940 داشته باشد."
 
 #: erpnext/edi/doctype/code_list/code_list_import.py:48
 msgid "The uploaded file does not match the selected Code List."
@@ -54665,7 +54665,7 @@ msgstr "این فیلتر برای ثبت دفتر روزنامه اعمال خ�
 
 #: erpnext/accounts/doctype/pos_invoice/pos_invoice.py:812
 msgid "This invoice has already been paid."
-msgstr ""
+msgstr "این فاکتور قبلاً پرداخت شده است."
 
 #: erpnext/manufacturing/doctype/bom/bom.js:219
 msgid "This is a Template BOM and will be used to make the work order for {0} of the item {1}"
@@ -55621,7 +55621,7 @@ msgstr "تن-نیرو (متریک)"
 
 #: erpnext/accounts/report/financial_statements.html:6
 msgid "Too many columns. Export the report and print it using a spreadsheet application."
-msgstr "تعداد ستون ها بسیار زیاد است. گزارش را برون‌بُرد کنید و آن را با استفاده از یک برنامه صفحه گسترده چاپ کنید."
+msgstr "تعداد ستون‌ها بسیار زیاد است. گزارش را برون‌بُرد کنید و آن را با استفاده از یک برنامه صفحه گسترده چاپ کنید."
 
 #. Label of a Card Break in the Manufacturing Workspace
 #. Label of the tools (Column Break) field in DocType 'Email Digest'
@@ -57602,11 +57602,11 @@ msgstr " رویدادهای تقویم آتی"
 #: erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.js:179
 #: erpnext/templates/pages/task_info.html:22
 msgid "Update"
-msgstr "به روز رسانی"
+msgstr "به‌روزرسانی"
 
 #: erpnext/accounts/doctype/account/account.js:52
 msgid "Update Account Name / Number"
-msgstr "به روز رسانی نام / شماره حساب"
+msgstr "به‌روزرسانی نام / شماره حساب"
 
 #: erpnext/accounts/doctype/account/account.js:158
 msgid "Update Account Number / Name"
@@ -57614,7 +57614,7 @@ msgstr "شماره / نام حساب را به روز کنید"
 
 #: erpnext/selling/page/point_of_sale/pos_payment.js:22
 msgid "Update Additional Information"
-msgstr ""
+msgstr "به‌روزرسانی اطلاعات تکمیلی"
 
 #. Label of the update_auto_repeat_reference (Button) field in DocType 'POS
 #. Invoice'
@@ -57638,14 +57638,14 @@ msgstr ""
 #: erpnext/selling/doctype/quotation/quotation.json
 #: erpnext/selling/doctype/sales_order/sales_order.json
 msgid "Update Auto Repeat Reference"
-msgstr "به روز رسانی مرجع تکرار خودکار"
+msgstr "به‌روزرسانی مرجع تکرار خودکار"
 
 #. Label of the update_bom_costs_automatically (Check) field in DocType
 #. 'Manufacturing Settings'
 #: erpnext/manufacturing/doctype/manufacturing_settings/manufacturing_settings.js:35
 #: erpnext/manufacturing/doctype/manufacturing_settings/manufacturing_settings.json
 msgid "Update BOM Cost Automatically"
-msgstr "به روز رسانی هزینه BOM به صورت خودکار"
+msgstr "به‌روزرسانی هزینه BOM به صورت خودکار"
 
 #. Description of the 'Update BOM Cost Automatically' (Check) field in DocType
 #. 'Manufacturing Settings'
@@ -57686,13 +57686,13 @@ msgstr "مبلغ صورتحساب در سفارش فروش را به روز کن
 #: erpnext/accounts/doctype/bank_clearance/bank_clearance.js:42
 #: erpnext/accounts/doctype/bank_clearance/bank_clearance.js:44
 msgid "Update Clearance Date"
-msgstr "به روز رسانی تاریخ ترخیص"
+msgstr "به‌روزرسانی تاریخ ترخیص"
 
 #. Label of the update_consumed_material_cost_in_project (Check) field in
 #. DocType 'Work Order'
 #: erpnext/manufacturing/doctype/work_order/work_order.json
 msgid "Update Consumed Material Cost In Project"
-msgstr "به روز رسانی هزینه مواد مصرفی در پروژه"
+msgstr "به‌روزرسانی هزینه مواد مصرفی در پروژه"
 
 #. Option for the 'Update Type' (Select) field in DocType 'BOM Update Log'
 #. Label of the update_cost_section (Section Break) field in DocType 'BOM
@@ -57701,34 +57701,34 @@ msgstr "به روز رسانی هزینه مواد مصرفی در پروژه"
 #: erpnext/manufacturing/doctype/bom_update_log/bom_update_log.json
 #: erpnext/manufacturing/doctype/bom_update_tool/bom_update_tool.json
 msgid "Update Cost"
-msgstr "به روز رسانی هزینه"
+msgstr "به‌روزرسانی هزینه"
 
 #: erpnext/accounts/doctype/cost_center/cost_center.js:19
 #: erpnext/accounts/doctype/cost_center/cost_center.js:52
 msgid "Update Cost Center Name / Number"
-msgstr "به روز رسانی نام / شماره مرکز هزینه"
+msgstr "به‌روزرسانی نام / شماره مرکز هزینه"
 
 #: erpnext/stock/doctype/pick_list/pick_list.js:105
 msgid "Update Current Stock"
-msgstr "به روز رسانی موجودی جاری"
+msgstr "به‌روزرسانی موجودی جاری"
 
 #. Label of the update_existing_price_list_rate (Check) field in DocType 'Stock
 #. Settings'
 #: erpnext/stock/doctype/stock_settings/stock_settings.json
 msgid "Update Existing Price List Rate"
-msgstr "به روز رسانی نرخ لیست قیمت موجود"
+msgstr "به‌روزرسانی نرخ لیست قیمت موجود"
 
 #. Option for the 'Import Type' (Select) field in DocType 'Bank Statement
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Update Existing Records"
-msgstr "به روز رسانی رکوردهای موجود"
+msgstr "به‌روزرسانی رکوردهای موجود"
 
 #: erpnext/buying/doctype/purchase_order/purchase_order.js:362
 #: erpnext/public/js/utils.js:854
 #: erpnext/selling/doctype/sales_order/sales_order.js:59
 msgid "Update Items"
-msgstr "به روز رسانی آیتم‌ها"
+msgstr "به‌روزرسانی آیتم‌ها"
 
 #. Label of the update_outstanding_for_self (Check) field in DocType 'Purchase
 #. Invoice'
@@ -57744,20 +57744,20 @@ msgstr ""
 #. Settings'
 #: erpnext/stock/doctype/stock_settings/stock_settings.json
 msgid "Update Price List Based On"
-msgstr ""
+msgstr "به‌روزرسانی لیست قیمت بر اساس"
 
 #: erpnext/accounts/doctype/cheque_print_template/cheque_print_template.js:10
 msgid "Update Print Format"
-msgstr "به روز رسانی فرمت چاپ"
+msgstr "به‌روزرسانی فرمت چاپ"
 
 #. Label of the get_stock_and_rate (Button) field in DocType 'Stock Entry'
 #: erpnext/stock/doctype/stock_entry/stock_entry.json
 msgid "Update Rate and Availability"
-msgstr "به روز رسانی نرخ و در دسترس بودن"
+msgstr "به‌روزرسانی نرخ و در دسترس بودن"
 
 #: erpnext/buying/doctype/purchase_order/purchase_order.js:633
 msgid "Update Rate as per Last Purchase"
-msgstr "نرخ به روز رسانی بر اساس آخرین خرید"
+msgstr "نرخ به‌روزرسانی بر اساس آخرین خرید"
 
 #. Label of the update_stock (Check) field in DocType 'POS Invoice'
 #. Label of the update_stock (Check) field in DocType 'POS Profile'
@@ -57768,28 +57768,28 @@ msgstr "نرخ به روز رسانی بر اساس آخرین خرید"
 #: erpnext/accounts/doctype/purchase_invoice/purchase_invoice.json
 #: erpnext/accounts/doctype/sales_invoice/sales_invoice.json
 msgid "Update Stock"
-msgstr "به روز رسانی موجودی"
+msgstr "به‌روزرسانی موجودی"
 
 #: erpnext/projects/doctype/project/project.js:91
 msgid "Update Total Purchase Cost"
-msgstr "به روز رسانی کل هزینه خرید"
+msgstr "به‌روزرسانی کل هزینه خرید"
 
 #. Label of the update_type (Select) field in DocType 'BOM Update Log'
 #: erpnext/manufacturing/doctype/bom_update_log/bom_update_log.json
 msgid "Update Type"
-msgstr "نوع به روز رسانی"
+msgstr "نوع به‌روزرسانی"
 
 #. Label of the project_update_frequency (Select) field in DocType 'Buying
 #. Settings'
 #: erpnext/buying/doctype/buying_settings/buying_settings.json
 msgid "Update frequency of Project"
-msgstr "فرکانس به روز رسانی پروژه"
+msgstr "فرکانس به‌روزرسانی پروژه"
 
 #. Label of the update_latest_price_in_all_boms (Button) field in DocType 'BOM
 #. Update Tool'
 #: erpnext/manufacturing/doctype/bom_update_tool/bom_update_tool.json
 msgid "Update latest price in all BOMs"
-msgstr "به روز رسانی آخرین قیمت در همه BOMها"
+msgstr "به‌روزرسانی آخرین قیمت در همه BOMها"
 
 #: erpnext/assets/doctype/asset/asset.py:401
 msgid "Update stock must be enabled for the purchase invoice {0}"
@@ -57805,7 +57805,7 @@ msgstr "به‌روزرسانی تایم‌استمپ تغییرات بر روی
 #. 'CRM Settings'
 #: erpnext/crm/doctype/crm_settings/crm_settings.json
 msgid "Update timestamp on new communication"
-msgstr "به روز رسانی تایم‌استمپ در ارتباطات جدید"
+msgstr "به‌روزرسانی تایم‌استمپ در ارتباطات جدید"
 
 #: erpnext/manufacturing/doctype/bom_creator/bom_creator.py:534
 msgid "Updated successfully"
@@ -57823,15 +57823,15 @@ msgstr "به روز شده از طریق \"Time Log\" (بر حسب دقیقه)"
 
 #: erpnext/stock/doctype/item/item.py:1379
 msgid "Updating Variants..."
-msgstr "به روز رسانی گونه‌ها..."
+msgstr "به‌روزرسانی گونه‌ها..."
 
 #: erpnext/manufacturing/doctype/work_order/work_order.js:998
 msgid "Updating Work Order status"
-msgstr "به روز رسانی وضعیت دستور کار"
+msgstr "به‌روزرسانی وضعیت دستور کار"
 
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.js:46
 msgid "Updating {0} of {1}, {2}"
-msgstr "در حال به روز رسانی {0} از {1}، {2}"
+msgstr "در حال به‌روزرسانی {0} از {1}، {2}"
 
 #: erpnext/accounts/doctype/bank_reconciliation_tool/bank_reconciliation_tool.js:48
 msgid "Upload Bank Statement"
@@ -58878,7 +58878,7 @@ msgstr "شماره جزئیات سند مالی"
 #. Item'
 #: erpnext/manufacturing/doctype/work_order_item/work_order_item.json
 msgid "Voucher Detail Reference"
-msgstr ""
+msgstr "مرجع جزئیات سند مالی"
 
 #. Label of the voucher_name (Data) field in DocType 'Tax Withheld Vouchers'
 #: erpnext/accounts/doctype/tax_withheld_vouchers/tax_withheld_vouchers.json
@@ -60445,7 +60445,7 @@ msgstr "شما در حال درون‌برد داده ها برای لیست ک�
 
 #: erpnext/controllers/accounts_controller.py:3722
 msgid "You are not allowed to update as per the conditions set in {} Workflow."
-msgstr "شما مجاز به به روز رسانی طبق شرایط تنظیم شده در {} گردش کار نیستید."
+msgstr "شما مجاز به به‌روزرسانی طبق شرایط تنظیم شده در {} گردش کار نیستید."
 
 #: erpnext/accounts/general_ledger.py:755
 msgid "You are not authorized to add or update entries before {0}"
@@ -60606,7 +60606,7 @@ msgstr "برای حفظ سطوح سفارش مجدد، باید سفارش مج�
 
 #: erpnext/selling/page/point_of_sale/pos_controller.js:308
 msgid "You have unsaved changes. Do you want to save the invoice?"
-msgstr ""
+msgstr "شما تغییرات ذخیره نشده دارید. آیا می‌خواهید فاکتور را ذخیره کنید؟"
 
 #: erpnext/templates/pages/projects.html:132
 msgid "You haven't created a {0} yet"
@@ -61027,7 +61027,7 @@ msgstr "از طریق تعمیر دارایی"
 
 #: erpnext/manufacturing/doctype/bom_update_log/bom_updation_utils.py:41
 msgid "via BOM Update Tool"
-msgstr "از طریق BOM ابزار به روز رسانی"
+msgstr "از طریق BOM ابزار به‌روزرسانی"
 
 #: erpnext/accounts/doctype/budget/budget.py:276
 msgid "will be"
