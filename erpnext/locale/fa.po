@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: hello@frappe.io\n"
 "POT-Creation-Date: 2025-06-29 09:36+0000\n"
-"PO-Revision-Date: 2025-07-02 05:23\n"
+"PO-Revision-Date: 2025-07-03 05:23\n"
 "Last-Translator: hello@frappe.io\n"
 "Language-Team: Persian\n"
 "MIME-Version: 1.0\n"
@@ -16147,7 +16147,7 @@ msgstr "مقدار تحویل داده شده"
 #. Label of the delivered_qty (Float) field in DocType 'Pick List Item'
 #: erpnext/stock/doctype/pick_list_item/pick_list_item.json
 msgid "Delivered Qty (in Stock UOM)"
-msgstr ""
+msgstr "مقدار تحویل داده شده (به UOM موجودی)"
 
 #: erpnext/selling/report/item_wise_sales_history/item_wise_sales_history.py:101
 msgid "Delivered Quantity"
@@ -25655,7 +25655,7 @@ msgstr "فعال است"
 #. Label of the is_additional_item (Check) field in DocType 'Work Order Item'
 #: erpnext/manufacturing/doctype/work_order_item/work_order_item.json
 msgid "Is Additional Item"
-msgstr ""
+msgstr "آیتم اضافی است"
 
 #. Label of the is_adjustment_entry (Check) field in DocType 'Stock Ledger
 #. Entry'
@@ -32489,7 +32489,7 @@ msgstr "موجودی رزرو شده ای برای لغو رزرو وجود ند
 
 #: erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py:781
 msgid "No stock ledger entries were created. Please set the quantity or valuation rate for the items properly and try again."
-msgstr ""
+msgstr "هیچ ثبت در دفتر موجودی ایجاد نشد. لطفاً مقدار یا نرخ ارزش‌گذاری آیتم‌ها را به درستی تنظیم کرده و دوباره امتحان کنید."
 
 #. Description of the 'Stock Frozen Up To' (Date) field in DocType 'Stock
 #. Settings'
@@ -45176,11 +45176,11 @@ msgstr "ردیف #{0}: مبلغ باید یک عدد مثبت باشد"
 
 #: erpnext/accounts/doctype/sales_invoice/sales_invoice.py:385
 msgid "Row #{0}: Asset {1} cannot be sold, it is already {2}"
-msgstr ""
+msgstr "ردیف #{0}: دارایی {1} قابل فروش نیست، در حال حاضر {2} است"
 
 #: erpnext/accounts/doctype/sales_invoice/sales_invoice.py:390
 msgid "Row #{0}: Asset {1} is already sold"
-msgstr ""
+msgstr "ردیف #{0}: دارایی {1} قبلاً فروخته شده است"
 
 #: erpnext/buying/doctype/purchase_order/purchase_order.py:368
 msgid "Row #{0}: BOM is not specified for subcontracting item {0}"
