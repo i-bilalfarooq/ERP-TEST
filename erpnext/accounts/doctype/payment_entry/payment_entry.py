@@ -202,8 +202,6 @@ class PaymentEntry(AccountsController):
 		self.update_outstanding_amounts()
 		self.update_payment_schedule()
 		self.update_payment_requests()
-		self.make_advance_payment_ledger_entries()
-		self.update_advance_paid()  # advance_paid_status depends on the payment request amount
 		self.set_status()
 
 	def validate_for_repost(self):
@@ -308,8 +306,6 @@ class PaymentEntry(AccountsController):
 		self.delink_advance_entry_references()
 		self.update_payment_schedule(cancel=1)
 		self.update_payment_requests(cancel=True)
-		self.make_advance_payment_ledger_entries()
-		self.update_advance_paid()  # advance_paid_status depends on the payment request amount
 		self.set_status()
 
 	def update_payment_requests(self, cancel=False):
@@ -1103,36 +1099,23 @@ class PaymentEntry(AccountsController):
 		advance_payment_doctypes = frappe.get_hooks("advance_payment_receivable_doctypes") + frappe.get_hooks(
 			"advance_payment_payable_doctypes"
 		)
-		if d.reference_doctype in advance_payment_doctypes:
-			# When referencing Sales/Purchase Order, use the source/target exchange rate depending on payment type.
-			# This is so there are no Exchange Gain/Loss generated for such doctypes
 
-			exchange_rate = 1
-			if self.payment_type == "Receive":
-				exchange_rate = self.source_exchange_rate
-			elif self.payment_type == "Pay":
-				exchange_rate = self.target_exchange_rate
+		exchange_rate = 1
+		if self.payment_type == "Receive":
+			exchange_rate = self.source_exchange_rate
+		elif self.payment_type == "Pay":
+			exchange_rate = self.target_exchange_rate
 
-			base_allocated_amount += flt(
-				flt(d.allocated_amount) * flt(exchange_rate), self.precision("base_paid_amount")
-			)
-		else:
-			# Use source/target exchange rate, so no difference amount is calculated.
-			# then update exchange gain/loss amount in reference table
-			# if there is an exchange gain/loss amount in reference table, submit a JE for that
+		base_allocated_amount += flt(
+			flt(d.allocated_amount) * flt(exchange_rate), self.precision("base_paid_amount")
+		)
 
-			exchange_rate = 1
-			if self.payment_type == "Receive":
-				exchange_rate = self.source_exchange_rate
-			elif self.payment_type == "Pay":
-				exchange_rate = self.target_exchange_rate
+		# When referencing Sales/Purchase Order, use the source/target exchange rate depending on payment type.
+		# on rare case, when `exchange_rate` is unset, gain/loss amount is incorrectly calculated
+		# for base currency transactions
 
-			base_allocated_amount += flt(
-				flt(d.allocated_amount) * flt(exchange_rate), self.precision("base_paid_amount")
-			)
-
-			# on rare case, when `exchange_rate` is unset, gain/loss amount is incorrectly calculated
-			# for base currency transactions
+		# This is so there are no Exchange Gain/Loss generated for such doctypes
+		if d.reference_doctype not in advance_payment_doctypes:
 			if d.exchange_rate is None:
 				d.exchange_rate = 1
 
@@ -1140,6 +1123,7 @@ class PaymentEntry(AccountsController):
 				flt(d.allocated_amount) * flt(d.exchange_rate), self.precision("base_paid_amount")
 			)
 			d.exchange_gain_loss = base_allocated_amount - allocated_amount_in_ref_exchange_rate
+
 		return base_allocated_amount
 
 	def set_total_allocated_amount(self):
@@ -1391,9 +1375,6 @@ class PaymentEntry(AccountsController):
 			against_account = self.paid_from
 
 		party_account_type = frappe.db.get_value("Party Type", self.party_type, "account_type")
-		advance_payment_doctypes = frappe.get_hooks("advance_payment_receivable_doctypes") + frappe.get_hooks(
-			"advance_payment_payable_doctypes"
-		)
 
 		party_gl_dict = self.get_gl_dict(
 			{
@@ -1419,7 +1400,7 @@ class PaymentEntry(AccountsController):
 			allocated_amount_in_company_currency = self.calculate_base_allocated_amount_for_reference(d)
 
 			if (
-				d.reference_doctype in ["Sales Invoice", "Purchase Invoice"]
+				d.reference_doctype in ["Sales Invoice", "Purchase Invoice", "Sales Order", "Purchase Order"]
 				and d.allocated_amount < 0
 				and (
 					(party_account_type == "Receivable" and self.payment_type == "Pay")
@@ -1448,15 +1429,12 @@ class PaymentEntry(AccountsController):
 				)
 			)
 
-			if d.reference_doctype in advance_payment_doctypes:
-				gle.update({"against_voucher_type": self.doctype, "against_voucher": self.name})
-			else:
-				gle.update(
-					{
-						"against_voucher_type": d.reference_doctype,
-						"against_voucher": d.reference_name,
-					}
-				)
+			gle.update(
+				{
+					"against_voucher_type": d.reference_doctype,
+					"against_voucher": d.reference_name,
+				}
+			)
 
 			gl_entries.append(gle)
 
@@ -1752,19 +1730,6 @@ class PaymentEntry(AccountsController):
 			conversion_rate = self.source_exchange_rate
 
 		return flt(gl_dict.get(field, 0) / (conversion_rate or 1))
-
-	def update_advance_paid(self):
-		if self.payment_type not in ("Receive", "Pay") or not self.party:
-			return
-
-		advance_payment_doctypes = frappe.get_hooks("advance_payment_receivable_doctypes") + frappe.get_hooks(
-			"advance_payment_payable_doctypes"
-		)
-		for d in self.get("references"):
-			if d.allocated_amount and d.reference_doctype in advance_payment_doctypes:
-				frappe.get_lazy_doc(
-					d.reference_doctype, d.reference_name, for_update=True
-				).set_total_advance_paid()
 
 	def on_recurring(self, reference_doc, auto_repeat_doc):
 		self.reference_no = reference_doc.name

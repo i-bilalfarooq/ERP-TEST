@@ -58,26 +58,19 @@ class UnreconcilePayment(Document):
 
 	def on_submit(self):
 		# todo: more granular unreconciliation
-		advance_payment_doctypes = frappe.get_hooks("advance_payment_payable_doctypes") + frappe.get_hooks(
-			"advance_payment_receivable_doctypes"
-		)
-
 		for alloc in self.allocations:
 			doc = frappe.get_doc(alloc.reference_doctype, alloc.reference_name)
 			unlink_ref_doc_from_payment_entries(doc, self.voucher_no)
 			cancel_exchange_gain_loss_journal(doc, self.voucher_type, self.voucher_no)
 
 			# update outstanding amounts
-			if doc.doctype in advance_payment_doctypes:
-				doc.set_total_advance_paid()
-			else:
-				update_voucher_outstanding(
-					alloc.reference_doctype,
-					alloc.reference_name,
-					alloc.account,
-					alloc.party_type,
-					alloc.party,
-				)
+			update_voucher_outstanding(
+				alloc.reference_doctype,
+				alloc.reference_name,
+				alloc.account,
+				alloc.party_type,
+				alloc.party,
+			)
 
 			frappe.db.set_value("Unreconcile Payment Entries", alloc.name, "unlinked", True)
 
@@ -96,11 +89,10 @@ def doc_has_references(doctype: str | None = None, docname: str | None = None):
 			filters={"delinked": 0, "voucher_no": docname, "against_voucher_no": ["!=", docname]},
 		)
 
-		if doctype == "Payment Entry":
-			count += frappe.db.count(
-				"Advance Payment Ledger Entry",
-				filters={"delinked": 0, "voucher_no": docname, "voucher_type": doctype},
-			)
+		count += frappe.db.count(
+			"Advance Payment Ledger Entry",
+			filters={"delinked": 0, "voucher_no": docname, "voucher_type": doctype},
+		)
 
 	return count
 

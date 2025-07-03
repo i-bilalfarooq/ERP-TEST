@@ -1,8 +1,10 @@
 # Copyright (c) 2024, Frappe Technologies Pvt. Ltd. and contributors
 # For license information, please see license.txt
 
-# import frappe
+import frappe
 from frappe.model.document import Document
+
+from erpnext.accounts.utils import update_voucher_outstanding
 
 
 class AdvancePaymentLedgerEntry(Document):
@@ -25,4 +27,10 @@ class AdvancePaymentLedgerEntry(Document):
 		voucher_type: DF.Link | None
 	# end: auto-generated types
 
-	pass
+	def on_update(self):
+		if (
+			self.against_voucher_type in ["Purchase Order", "Sales Order"]
+			and self.flags.update_outstanding == "Yes"
+			and not frappe.flags.is_reverse_depr_entry
+		):
+			update_voucher_outstanding(self.against_voucher_type, self.against_voucher_no, None, None, None)
