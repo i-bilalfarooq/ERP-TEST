@@ -8,24 +8,9 @@ from frappe.utils import cint, flt, get_time, now_datetime
 
 from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import get_dimensions
 from erpnext.controllers.status_updater import StatusUpdater
-from erpnext.stock.get_item_details import get_item_details, purchase_doctypes, sales_doctypes
+from erpnext.hooks import purchase_doctypes, sales_doctypes
+from erpnext.stock.get_item_details import get_item_details
 from erpnext.stock.utils import get_incoming_rate
-
-TRANSACTION_REFERENCE_FIELDS = {
-	("Quotation", "Sales Order"): "prevdoc_docname",
-	("Delivery Note", "Sales Invoice"): "delivery_note",
-	("Delivery Note", "POS Invoice"): "delivery_note",
-	("Sales Order", "Sales Invoice"): "sales_order",
-	("Sales Order", "Delivery Note"): "against_sales_order",
-	("Sales Order", "POS Invoice"): "sales_order",
-	("POS Invoice", "Sales Invoice"): "pos_invoice",
-	("Sales Invoice", "Delivery Note"): "against_sales_invoice",
-	("Supplier Quotation", "Purchase Order"): "supplier_quotation",
-	("Purchase Order", "Purchase Receipt"): "purchase_order",
-	("Purchase Order", "Purchase Invoice"): "purchase_order",
-	("Purchase Invoice", "Purchase Receipt"): "purchase_invoice",
-	("Purchase Receipt", "Purchase Invoice"): "purchase_receipt",
-}
 
 
 class UOMMustBeIntegerError(frappe.ValidationError):
@@ -591,11 +576,23 @@ def after_mapping(doc, method, source_doc):
 	if not source_doc.discount_amount or source_doc.additional_discount_percentage:
 		return
 
-	reference_fieldname = TRANSACTION_REFERENCE_FIELDS.get((source_doc.doctype, doc.doctype))
+	item_table = f"{doc.doctype} Item"
+	meta = frappe.get_meta(item_table)
+
+	reference_fieldname = next(
+		(
+			row.fieldname
+			for row in meta.fields
+			if row.fieldtype == "Link"
+			and row.options == source_doc.doctype
+			and not row.get("is_custom_field")
+		),
+		None,
+	)
+
 	if not reference_fieldname:
 		return
 
-	item_table = f"{doc.doctype} Item"
 	previous_documents = frappe.get_all(
 		doc.doctype,
 		fields=["name", "discount_amount"],
@@ -615,10 +612,14 @@ def after_mapping(doc, method, source_doc):
 	if not previous_documents:
 		return
 
-	for previous_doc in previous_documents:
-		doc.discount_amount -= previous_doc.discount_amount
+	doc.discount_amount = flt(
+		doc.discount_amount - sum(previous_doc.discount_amount for previous_doc in previous_documents),
+		doc.precision("discount_amount"),
+	)
 
-	if -0.1 < doc.discount_amount < 0:
+	if (source_doc.grand_total >= 0 and doc.discount_amount < 0) or (
+		source_doc.grand_total < 0 and doc.discount_amount > 0
+	):
 		doc.discount_amount = 0
 
 	doc.run_method("calculate_taxes_and_totals")

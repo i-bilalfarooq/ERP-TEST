@@ -717,10 +717,10 @@ class calculate_taxes_and_totals:
 
 		if abs(discount_amount) > abs(self.doc.grand_total):
 			frappe.throw(
-				_("Discount amount {0} cannot be greater than Grand Total {1}").format(
+				_("Discount amount ({0}) cannot be greater than Grand Total ({1})").format(
 					fmt_money(discount_amount, self.doc.precision("discount_amount"), self.doc.currency),
 					fmt_money(self.doc.grand_total, self.doc.precision("grand_total"), self.doc.currency),
-				)
+				),
 			)
 
 		self.doc.discount_amount = discount_amount
