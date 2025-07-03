@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: hello@frappe.io\n"
 "POT-Creation-Date: 2025-06-29 09:36+0000\n"
-"PO-Revision-Date: 2025-07-02 05:23\n"
+"PO-Revision-Date: 2025-07-03 05:23\n"
 "Last-Translator: hello@frappe.io\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -13510,7 +13510,7 @@ msgstr "Skapar Försäljning Följesedel ..."
 
 #: erpnext/accounts/doctype/accounting_dimension/accounting_dimension.py:146
 msgid "Creating Dimensions..."
-msgstr "Skapar Dimensioner ..."
+msgstr "Skapar Dimensioner..."
 
 #: erpnext/accounts/doctype/exchange_rate_revaluation/exchange_rate_revaluation.js:92
 msgid "Creating Journal Entries..."
@@ -16129,7 +16129,7 @@ msgstr "Ta bort Annullerade Register Poster"
 
 #: erpnext/stock/doctype/inventory_dimension/inventory_dimension.js:66
 msgid "Delete Dimension"
-msgstr "Ta bort Dimension"
+msgstr "Ta Bort Dimension"
 
 #. Label of the delete_leads_and_addresses (Check) field in DocType
 #. 'Transaction Deletion Record'
