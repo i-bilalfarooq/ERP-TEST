@@ -198,10 +198,11 @@ class PaymentEntry(AccountsController):
 	def on_submit(self):
 		if self.difference_amount:
 			frappe.throw(_("Difference Amount must be zero"))
-		self.update_payment_requests()  # To be called before advance ledger entry creation
 		self.make_gl_entries()
 		self.update_outstanding_amounts()
 		self.update_payment_schedule()
+		self.update_payment_requests()
+		self.set_advance_payment_status_for_advance_doctypes()  # advance_paid_status depends on the payment request amount
 		self.set_status()
 
 	def validate_for_repost(self):
@@ -301,11 +302,12 @@ class PaymentEntry(AccountsController):
 			"Advance Payment Ledger Entry",
 		)
 		super().on_cancel()
-		self.update_payment_requests(cancel=True)  # To be called before advance ledger entry creation
 		self.make_gl_entries(cancel=1)
 		self.update_outstanding_amounts()
-		self.delink_advance_entry_references()
 		self.update_payment_schedule(cancel=1)
+		self.update_payment_requests(cancel=True)
+		self.set_advance_payment_status_for_advance_doctypes()
+		self.delink_advance_entry_references()
 		self.set_status()
 
 	def update_payment_requests(self, cancel=False):
@@ -1730,6 +1732,19 @@ class PaymentEntry(AccountsController):
 			conversion_rate = self.source_exchange_rate
 
 		return flt(gl_dict.get(field, 0) / (conversion_rate or 1))
+
+	def set_advance_payment_status_for_advance_doctypes(self):
+		if self.payment_type not in ("Receive", "Pay") or not self.party:
+			return
+
+		advance_payment_doctypes = frappe.get_hooks("advance_payment_receivable_doctypes") + frappe.get_hooks(
+			"advance_payment_payable_doctypes"
+		)
+		for d in self.get("references"):
+			if d.allocated_amount and d.reference_doctype in advance_payment_doctypes:
+				frappe.get_lazy_doc(
+					d.reference_doctype, d.reference_name, for_update=True
+				).set_advance_payment_status()
 
 	def on_recurring(self, reference_doc, auto_repeat_doc):
 		self.reference_no = reference_doc.name
