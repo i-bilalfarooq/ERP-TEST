@@ -46,6 +46,7 @@ from erpnext.accounts.party import (
 from erpnext.accounts.utils import (
 	cancel_exchange_gain_loss_journal,
 	get_account_currency,
+	get_advance_reconciliation_date,
 	get_outstanding_invoices,
 )
 from erpnext.controllers.accounts_controller import (
@@ -197,12 +198,11 @@ class PaymentEntry(AccountsController):
 	def on_submit(self):
 		if self.difference_amount:
 			frappe.throw(_("Difference Amount must be zero"))
-		self.make_gl_entries()
 		self.update_outstanding_amounts()
+		self.make_gl_entries()
 		self.update_payment_schedule()
 		self.update_payment_requests()
-		self.make_advance_payment_ledger_entries()
-		self.update_advance_paid()  # advance_paid_status depends on the payment request amount
+		self.set_advance_payment_status_for_advance_doctypes()  # advance_paid_status depends on the payment request amount
 		self.set_status()
 
 	def validate_for_repost(self):
@@ -302,13 +302,12 @@ class PaymentEntry(AccountsController):
 			"Advance Payment Ledger Entry",
 		)
 		super().on_cancel()
-		self.make_gl_entries(cancel=1)
 		self.update_outstanding_amounts()
-		self.delink_advance_entry_references()
+		self.make_gl_entries(cancel=1)
 		self.update_payment_schedule(cancel=1)
 		self.update_payment_requests(cancel=True)
-		self.make_advance_payment_ledger_entries()
-		self.update_advance_paid()  # advance_paid_status depends on the payment request amount
+
+		self.delink_advance_entry_references()
 		self.set_status()
 
 	def update_payment_requests(self, cancel=False):
@@ -317,6 +316,7 @@ class PaymentEntry(AccountsController):
 		)
 
 		update_payment_requests_as_per_pe_references(self.references, cancel=cancel)
+		self.set_advance_payment_status_for_advance_doctypes()
 
 	def update_outstanding_amounts(self):
 		self.set_missing_ref_details(force=True)
@@ -1102,36 +1102,23 @@ class PaymentEntry(AccountsController):
 		advance_payment_doctypes = frappe.get_hooks("advance_payment_receivable_doctypes") + frappe.get_hooks(
 			"advance_payment_payable_doctypes"
 		)
-		if d.reference_doctype in advance_payment_doctypes:
-			# When referencing Sales/Purchase Order, use the source/target exchange rate depending on payment type.
-			# This is so there are no Exchange Gain/Loss generated for such doctypes
 
-			exchange_rate = 1
-			if self.payment_type == "Receive":
-				exchange_rate = self.source_exchange_rate
-			elif self.payment_type == "Pay":
-				exchange_rate = self.target_exchange_rate
+		exchange_rate = 1
+		if self.payment_type == "Receive":
+			exchange_rate = self.source_exchange_rate
+		elif self.payment_type == "Pay":
+			exchange_rate = self.target_exchange_rate
 
-			base_allocated_amount += flt(
-				flt(d.allocated_amount) * flt(exchange_rate), self.precision("base_paid_amount")
-			)
-		else:
-			# Use source/target exchange rate, so no difference amount is calculated.
-			# then update exchange gain/loss amount in reference table
-			# if there is an exchange gain/loss amount in reference table, submit a JE for that
+		base_allocated_amount += flt(
+			flt(d.allocated_amount) * flt(exchange_rate), self.precision("base_paid_amount")
+		)
 
-			exchange_rate = 1
-			if self.payment_type == "Receive":
-				exchange_rate = self.source_exchange_rate
-			elif self.payment_type == "Pay":
-				exchange_rate = self.target_exchange_rate
+		# When referencing Sales/Purchase Order, use the source/target exchange rate depending on payment type.
+		# on rare case, when `exchange_rate` is unset, gain/loss amount is incorrectly calculated
+		# for base currency transactions
 
-			base_allocated_amount += flt(
-				flt(d.allocated_amount) * flt(exchange_rate), self.precision("base_paid_amount")
-			)
-
-			# on rare case, when `exchange_rate` is unset, gain/loss amount is incorrectly calculated
-			# for base currency transactions
+		# This is so there are no Exchange Gain/Loss generated for such doctypes
+		if d.reference_doctype not in advance_payment_doctypes:
 			if d.exchange_rate is None:
 				d.exchange_rate = 1
 
@@ -1139,6 +1126,7 @@ class PaymentEntry(AccountsController):
 				flt(d.allocated_amount) * flt(d.exchange_rate), self.precision("base_paid_amount")
 			)
 			d.exchange_gain_loss = base_allocated_amount - allocated_amount_in_ref_exchange_rate
+
 		return base_allocated_amount
 
 	def set_total_allocated_amount(self):
@@ -1384,10 +1372,6 @@ class PaymentEntry(AccountsController):
 		if not self.party_account:
 			return
 
-		advance_payment_doctypes = frappe.get_hooks("advance_payment_receivable_doctypes") + frappe.get_hooks(
-			"advance_payment_payable_doctypes"
-		)
-
 		if self.payment_type == "Receive":
 			against_account = self.paid_to
 		else:
@@ -1419,7 +1403,7 @@ class PaymentEntry(AccountsController):
 			allocated_amount_in_company_currency = self.calculate_base_allocated_amount_for_reference(d)
 
 			if (
-				d.reference_doctype in ["Sales Invoice", "Purchase Invoice"]
+				d.reference_doctype in ["Sales Invoice", "Purchase Invoice", "Sales Order", "Purchase Order"]
 				and d.allocated_amount < 0
 				and (
 					(party_account_type == "Receivable" and self.payment_type == "Pay")
@@ -1448,25 +1432,12 @@ class PaymentEntry(AccountsController):
 				)
 			)
 
-			if self.book_advance_payments_in_separate_party_account:
-				if d.reference_doctype in advance_payment_doctypes:
-					# Upon reconciliation, whole ledger will be reposted. So, reference to SO/PO is fine
-					gle.update(
-						{
-							"against_voucher_type": d.reference_doctype,
-							"against_voucher": d.reference_name,
-						}
-					)
-				else:
-					# Do not reference Invoices while Advance is in separate party account
-					gle.update({"against_voucher_type": self.doctype, "against_voucher": self.name})
-			else:
-				gle.update(
-					{
-						"against_voucher_type": d.reference_doctype,
-						"against_voucher": d.reference_name,
-					}
-				)
+			gle.update(
+				{
+					"against_voucher_type": d.reference_doctype,
+					"against_voucher": d.reference_name,
+				}
+			)
 
 			gl_entries.append(gle)
 
@@ -1570,23 +1541,10 @@ class PaymentEntry(AccountsController):
 		else:
 			# For backwards compatibility
 			# Supporting reposting on payment entries reconciled before select field introduction
-			reconciliation_takes_effect_on = frappe.get_cached_value(
-				"Company", self.company, "reconciliation_takes_effect_on"
+			posting_date = get_advance_reconciliation_date(
+				self, invoice.reference_doctype, invoice.reference_name
 			)
-			if reconciliation_takes_effect_on == "Advance Payment Date":
-				posting_date = self.posting_date
-			elif reconciliation_takes_effect_on == "Oldest Of Invoice Or Advance":
-				date_field = "posting_date"
-				if invoice.reference_doctype in ["Sales Order", "Purchase Order"]:
-					date_field = "transaction_date"
-				posting_date = frappe.db.get_value(
-					invoice.reference_doctype, invoice.reference_name, date_field
-				)
 
-				if getdate(posting_date) < getdate(self.posting_date):
-					posting_date = self.posting_date
-			elif reconciliation_takes_effect_on == "Reconciliation Date":
-				posting_date = nowdate()
 			frappe.db.set_value("Payment Entry Reference", invoice.name, "reconcile_effect_on", posting_date)
 
 		dr_or_cr, account = self.get_dr_and_account_for_advances(invoice)
@@ -1776,7 +1734,7 @@ class PaymentEntry(AccountsController):
 
 		return flt(gl_dict.get(field, 0) / (conversion_rate or 1))
 
-	def update_advance_paid(self):
+	def set_advance_payment_status_for_advance_doctypes(self):
 		if self.payment_type not in ("Receive", "Pay") or not self.party:
 			return
 
@@ -1787,7 +1745,7 @@ class PaymentEntry(AccountsController):
 			if d.allocated_amount and d.reference_doctype in advance_payment_doctypes:
 				frappe.get_lazy_doc(
 					d.reference_doctype, d.reference_name, for_update=True
-				).set_total_advance_paid()
+				).set_advance_payment_status()
 
 	def on_recurring(self, reference_doc, auto_repeat_doc):
 		self.reference_no = reference_doc.name

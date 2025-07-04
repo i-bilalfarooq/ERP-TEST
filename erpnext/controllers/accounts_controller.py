@@ -8,7 +8,7 @@ from collections import defaultdict
 import frappe
 from frappe import _, bold, qb, throw
 from frappe.model.workflow import get_workflow_name, is_transition_condition_satisfied
-from frappe.query_builder import Criterion, DocType
+from frappe.query_builder import Case, Criterion, DocType
 from frappe.query_builder.custom import ConstantColumn
 from frappe.query_builder.functions import Abs, Sum
 from frappe.utils import (
@@ -394,7 +394,6 @@ class AccountsController(TransactionBase):
 	def on_trash(self):
 		from erpnext.accounts.utils import delete_exchange_gain_loss_journal
 
-		self._remove_advance_payment_ledger_entries()
 		self._remove_references_in_repost_doctypes()
 		self._remove_references_in_unreconcile()
 		self.remove_serial_and_batch_bundle()
@@ -422,6 +421,8 @@ class AccountsController(TransactionBase):
 			frappe.qb.from_(sle).delete().where(
 				(sle.voucher_type == self.doctype) & (sle.voucher_no == self.name)
 			).run()
+
+			self._remove_advance_payment_ledger_entries()
 
 	def remove_serial_and_batch_bundle(self):
 		bundles = frappe.get_all(
@@ -2203,17 +2204,20 @@ class AccountsController(TransactionBase):
 
 	def calculate_total_advance_from_ledger(self):
 		adv = frappe.qb.DocType("Advance Payment Ledger Entry")
-		advance = (
+		return (
 			frappe.qb.from_(adv)
-			.select(adv.currency.as_("account_currency"), Abs(Sum(adv.amount)).as_("amount"))
+			.select(
+				Abs(Sum(Case().when(adv.delinked == 0, adv.amount).else_(0))).as_("amount"),
+				adv.currency.as_("account_currency"),
+			)
 			.where(
 				(adv.against_voucher_type == self.doctype)
 				& (adv.against_voucher_no == self.name)
 				& (adv.company == self.company)
 			)
+			.groupby(adv.against_voucher_no, adv.against_voucher_type, adv.company)
 			.run(as_dict=True)
 		)
-		return advance
 
 	def set_total_advance_paid(self):
 		advance = self.calculate_total_advance_from_ledger()
@@ -2251,8 +2255,6 @@ class AccountsController(TransactionBase):
 				)
 
 			self.db_set("advance_paid", advance_paid)
-
-		self.set_advance_payment_status()
 
 	def set_advance_payment_status(self):
 		new_status = None
@@ -2980,6 +2982,22 @@ class AccountsController(TransactionBase):
 			doc.event = "Submit" if self.docstatus == 1 else "Cancel"
 			doc.flags.ignore_permissions = 1
 			doc.save()
+
+	def mark_advance_payment_ledger_as_delinked(self, references):
+		if not (references.get("reference_doctype") and references.get("reference_name")):
+			return
+
+		adv = qb.DocType("Advance Payment Ledger Entry")
+
+		(
+			qb.update(adv)
+			.set(adv.delinked, 1)
+			.where(adv.voucher_type == self.doctype)
+			.where(adv.voucher_no == self.name)
+			.where(adv.against_voucher_type == references.reference_doctype)
+			.where(adv.against_voucher_no == references.reference_name)
+			.run()
+		)
 
 	def make_advance_payment_ledger_entries(self):
 		if self.docstatus != 0:
