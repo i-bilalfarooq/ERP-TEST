@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: hello@frappe.io\n"
 "POT-Creation-Date: 2025-06-29 09:36+0000\n"
-"PO-Revision-Date: 2025-06-30 04:48\n"
+"PO-Revision-Date: 2025-07-04 05:34\n"
 "Last-Translator: hello@frappe.io\n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -651,7 +651,7 @@ msgstr ""
 #. Content of the 'html_5' (HTML) field in DocType 'Bank Statement Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "<h5 class=\"text-muted uppercase\">Or</h5>"
-msgstr ""
+msgstr "<h5 class=\"text-muted uppercase\">или</h5>"
 
 #. Content of the 'account_no_settings' (HTML) field in DocType 'Cheque Print
 #. Template'
@@ -747,7 +747,7 @@ msgstr ""
 #: erpnext/assets/workspace/assets/assets.json
 #: erpnext/quality_management/workspace/quality/quality.json
 msgid "<span class=\"h4\"><b>Reports & Masters</b></span>"
-msgstr ""
+msgstr "<span class=\"h4\"><b>Извештаји и мастер подаци</b></span>"
 
 #. Header text in the Accounting Workspace
 #. Header text in the Payables Workspace
@@ -770,7 +770,7 @@ msgstr ""
 #: erpnext/setup/workspace/home/home.json
 #: erpnext/support/workspace/support/support.json
 msgid "<span class=\"h4\"><b>Reports &amp; Masters</b></span>"
-msgstr ""
+msgstr "<span class=\"h4\"><b>Извештаји &amp; мастер подаци</b></span>"
 
 #. Header text in the Settings Workspace
 #: erpnext/setup/workspace/settings/settings.json
@@ -814,7 +814,7 @@ msgstr ""
 #: erpnext/setup/workspace/home/home.json
 #: erpnext/support/workspace/support/support.json
 msgid "<span class=\"h4\"><b>Your Shortcuts</b></span>"
-msgstr ""
+msgstr "<span class=\"h4\"><b>Ваше пречице</b></span>"
 
 #: erpnext/accounts/doctype/payment_request/payment_request.py:988
 msgid "<strong>Grand Total:</strong> {0}"
@@ -946,7 +946,7 @@ msgstr ""
 #. Template'
 #: erpnext/accounts/doctype/cheque_print_template/cheque_print_template.json
 msgid "A4"
-msgstr ""
+msgstr "А4"
 
 #. Option for the 'Blood Group' (Select) field in DocType 'Employee'
 #: erpnext/setup/doctype/employee/employee.json
@@ -976,7 +976,7 @@ msgstr ""
 #. Label of the api_sb (Section Break) field in DocType 'Support Search Source'
 #: erpnext/support/doctype/support_search_source/support_search_source.json
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #. Label of the api_details_section (Section Break) field in DocType 'Currency
 #. Exchange Settings'
@@ -988,12 +988,12 @@ msgstr ""
 #. Settings'
 #: erpnext/accounts/doctype/currency_exchange_settings/currency_exchange_settings.json
 msgid "API Endpoint"
-msgstr ""
+msgstr "API Endpoint"
 
 #. Label of the api_key (Data) field in DocType 'Video Settings'
 #: erpnext/utilities/doctype/video_settings/video_settings.json
 msgid "API Key"
-msgstr ""
+msgstr "API кључ"
 
 #. Label of the awb_number (Data) field in DocType 'Shipment'
 #: erpnext/stock/doctype/shipment/shipment.json
@@ -3461,7 +3461,7 @@ msgstr ""
 #. Label of the section_break_13 (Tab Break) field in DocType 'Pricing Rule'
 #: erpnext/accounts/doctype/pricing_rule/pricing_rule.json
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Напредна подешавања"
 
 #. Label of the advances (Table) field in DocType 'POS Invoice'
 #. Label of the advances (Table) field in DocType 'Purchase Invoice'
@@ -4426,7 +4426,7 @@ msgstr ""
 #. Label of the allowed (Check) field in DocType 'Repost Allowed Types'
 #: erpnext/accounts/doctype/repost_allowed_types/repost_allowed_types.json
 msgid "Allowed"
-msgstr ""
+msgstr "Дозвољено"
 
 #. Name of a DocType
 #: erpnext/accounts/doctype/allowed_dimension/allowed_dimension.json
@@ -5094,7 +5094,7 @@ msgstr ""
 #: erpnext/crm/doctype/lead/lead.json
 #: erpnext/crm/doctype/opportunity/opportunity.json
 msgid "Analytics"
-msgstr ""
+msgstr "Аналитика"
 
 #: erpnext/accounts/doctype/budget/budget.py:235
 msgid "Annual"
@@ -6279,7 +6279,7 @@ msgstr ""
 #. Label of the attachment (Attach) field in DocType 'Issue'
 #: erpnext/support/doctype/issue/issue.json
 msgid "Attachment"
-msgstr ""
+msgstr "Прилог"
 
 #: erpnext/templates/pages/order.html:136
 #: erpnext/templates/pages/projects.html:81
@@ -6462,7 +6462,7 @@ msgstr ""
 #: erpnext/buying/doctype/buying_settings/buying_settings.json
 #: erpnext/selling/doctype/selling_settings/selling_settings.json
 msgid "Auto Name"
-msgstr ""
+msgstr "Аутоматски назив"
 
 #. Label of the auto_opt_in (Check) field in DocType 'Loyalty Program'
 #: erpnext/accounts/doctype/loyalty_program/loyalty_program.json
@@ -7721,7 +7721,7 @@ msgstr ""
 #. Label of the base_url (Data) field in DocType 'Support Search Source'
 #: erpnext/support/doctype/support_search_source/support_search_source.json
 msgid "Base URL"
-msgstr ""
+msgstr "Основни URL"
 
 #. Label of the based_on (Select) field in DocType 'Authorization Rule'
 #. Label of the based_on (Select) field in DocType 'Repost Item Valuation'
@@ -9919,7 +9919,7 @@ msgstr ""
 #: erpnext/accounts/doctype/tax_withholding_category/tax_withholding_category.json
 #: erpnext/stock/doctype/uom_category/uom_category.json
 msgid "Category Name"
-msgstr ""
+msgstr "Назив категорије"
 
 #: erpnext/assets/dashboard_fixtures.py:93
 msgid "Category-wise Asset Value"
@@ -10161,7 +10161,7 @@ msgstr ""
 #. 'Communication Medium'
 #: erpnext/communication/doctype/communication_medium/communication_medium.json
 msgid "Chat"
-msgstr ""
+msgstr "Чет"
 
 #. Label of the check_supplier_invoice_uniqueness (Check) field in DocType
 #. 'Accounts Settings'
@@ -10425,7 +10425,7 @@ msgstr ""
 #. Option for the 'Lead Type' (Select) field in DocType 'Lead'
 #: erpnext/crm/doctype/lead/lead.json
 msgid "Client"
-msgstr ""
+msgstr "Клијент"
 
 #: erpnext/buying/doctype/purchase_order/purchase_order.js:388
 #: erpnext/buying/doctype/purchase_order/purchase_order_list.js:54
@@ -10600,7 +10600,7 @@ msgstr ""
 #: erpnext/edi/doctype/code_list/code_list_import.js:172
 #: erpnext/setup/doctype/incoterm/incoterm.json
 msgid "Code"
-msgstr ""
+msgstr "Шифра"
 
 #. Name of a DocType
 #. Label of the code_list (Link) field in DocType 'Common Code'
@@ -11706,7 +11706,7 @@ msgstr ""
 #: erpnext/accounts/doctype/pos_profile/pos_profile.json
 #: erpnext/manufacturing/doctype/work_order/work_order.json
 msgid "Configuration"
-msgstr ""
+msgstr "Конфигурација"
 
 #: erpnext/public/js/bom_configurator/bom_configurator.bundle.js:56
 msgid "Configure Product Assembly"
@@ -12054,7 +12054,7 @@ msgstr ""
 
 #: erpnext/selling/page/point_of_sale/pos_item_cart.js:897
 msgid "Contact Details"
-msgstr ""
+msgstr "Контакт детаљи"
 
 #. Label of the contact_email (Data) field in DocType 'Dunning'
 #. Label of the contact_email (Data) field in DocType 'POS Invoice'
@@ -12244,7 +12244,7 @@ msgstr "Садржај"
 #. Label of the content_type (Data) field in DocType 'Issue'
 #: erpnext/support/doctype/issue/issue.json
 msgid "Content Type"
-msgstr ""
+msgstr "Врста садржаја"
 
 #: erpnext/erpnext_integrations/doctype/plaid_settings/plaid_settings.js:162
 #: erpnext/public/js/controllers/transaction.js:2364
@@ -15115,7 +15115,7 @@ msgstr ""
 #. Timeslot'
 #: erpnext/communication/doctype/communication_medium_timeslot/communication_medium_timeslot.json
 msgid "Day of Week"
-msgstr ""
+msgstr "Дан у недељи"
 
 #. Label of the day_to_send (Select) field in DocType 'Project'
 #: erpnext/projects/doctype/project/project.json
@@ -15619,7 +15619,7 @@ msgstr ""
 #. Label of the default_letter_head (Link) field in DocType 'Company'
 #: erpnext/setup/doctype/company/company.json
 msgid "Default Letter Head"
-msgstr ""
+msgstr "Подразумевано заглавље"
 
 #. Label of the default_manufacturer_part_no (Data) field in DocType 'Item'
 #: erpnext/stock/doctype/item/item.json
@@ -15803,7 +15803,7 @@ msgstr ""
 #. Label of the default_value (Data) field in DocType 'POS Field'
 #: erpnext/accounts/doctype/pos_field/pos_field.json
 msgid "Default Value"
-msgstr ""
+msgstr "Подразумевана вредност"
 
 #. Label of the default_warehouse (Link) field in DocType 'Item Default'
 #. Label of the section_break_jwgn (Section Break) field in DocType 'Stock
@@ -15872,7 +15872,7 @@ msgstr ""
 #: erpnext/setup/doctype/item_group/item_group.json
 #: erpnext/stock/doctype/stock_settings/stock_settings.json
 msgid "Defaults"
-msgstr ""
+msgstr "Подразумеване вредности"
 
 #: erpnext/setup/setup_wizard/data/industry_type.txt:17
 msgid "Defense"
@@ -17929,7 +17929,7 @@ msgstr ""
 #. Label of the mute_emails (Check) field in DocType 'Bank Statement Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Don't Send Emails"
-msgstr ""
+msgstr "Немој слати имејлове"
 
 #. Label of the done (Check) field in DocType 'Transaction Deletion Record
 #. Details'
@@ -18211,7 +18211,7 @@ msgstr ""
 #: erpnext/accounts/doctype/payment_term/payment_term.json
 #: erpnext/accounts/doctype/payment_terms_template_detail/payment_terms_template_detail.json
 msgid "Due Date Based On"
-msgstr ""
+msgstr "Датум доспећа заснован на"
 
 #: erpnext/accounts/party.py:703
 msgid "Due Date cannot be after {0}"
@@ -18692,7 +18692,7 @@ msgstr ""
 #. Supplier'
 #: erpnext/buying/doctype/request_for_quotation_supplier/request_for_quotation_supplier.json
 msgid "Email Sent"
-msgstr ""
+msgstr "Имејл послат"
 
 #: erpnext/buying/doctype/request_for_quotation/request_for_quotation.py:328
 msgid "Email Sent to Supplier {0}"
@@ -18702,7 +18702,7 @@ msgstr ""
 #. Statement Of Accounts'
 #: erpnext/accounts/doctype/process_statement_of_accounts/process_statement_of_accounts.json
 msgid "Email Settings"
-msgstr ""
+msgstr "Имејл подешавања"
 
 #. Label of the email_template (Link) field in DocType 'Request for Quotation'
 #. Label of the email_template (Link) field in DocType 'Campaign Email
@@ -20241,7 +20241,7 @@ msgstr ""
 #: erpnext/crm/doctype/prospect/prospect.json
 #: erpnext/setup/doctype/company/company.json
 msgid "Fax"
-msgstr ""
+msgstr "Факс"
 
 #. Label of the feedback (Link) field in DocType 'Quality Action'
 #. Label of the feedback (Text Editor) field in DocType 'Quality Feedback
@@ -20388,7 +20388,7 @@ msgstr ""
 #. Label of the fieldtype (Data) field in DocType 'POS Field'
 #: erpnext/accounts/doctype/pos_field/pos_field.json
 msgid "Fieldtype"
-msgstr ""
+msgstr "Врста поља"
 
 #. Label of the file_to_rename (Attach) field in DocType 'Rename Tool'
 #: erpnext/utilities/doctype/rename_tool/rename_tool.json
@@ -20582,7 +20582,7 @@ msgstr ""
 
 #: erpnext/utilities/doctype/rename_tool/rename_tool.js:78
 msgid "Finished"
-msgstr ""
+msgstr "Завршено"
 
 #. Label of the fg_item (Link) field in DocType 'Purchase Order Item'
 #. Label of the item_code (Link) field in DocType 'BOM Creator'
@@ -22998,7 +22998,7 @@ msgstr ""
 #. Statements'
 #: erpnext/accounts/doctype/bisect_accounting_statements/bisect_accounting_statements.json
 msgid "Heatmap"
-msgstr ""
+msgstr "Топлотна мапа"
 
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
@@ -23243,7 +23243,7 @@ msgstr ""
 #. 'Project'
 #: erpnext/projects/doctype/project/project.json
 msgid "Hourly"
-msgstr ""
+msgstr "По часу"
 
 #. Label of the hours (Float) field in DocType 'Workstation Working Hour'
 #: erpnext/manufacturing/doctype/workstation_working_hour/workstation_working_hour.json
@@ -23328,7 +23328,7 @@ msgstr ""
 #. Label of the ip_address (Data) field in DocType 'Contract'
 #: erpnext/crm/doctype/contract/contract.json
 msgid "IP Address"
-msgstr ""
+msgstr "IP адреса"
 
 #. Name of a report
 #: erpnext/regional/report/irs_1099/irs_1099.json
@@ -23940,7 +23940,7 @@ msgstr ""
 #: erpnext/subcontracting/doctype/subcontracting_receipt_item/subcontracting_receipt_item.json
 #: erpnext/utilities/doctype/video/video.json
 msgid "Image"
-msgstr ""
+msgstr "Слика"
 
 #. Label of the image_view (Image) field in DocType 'POS Invoice Item'
 #. Label of the image_view (Image) field in DocType 'Purchase Invoice Item'
@@ -24010,13 +24010,13 @@ msgstr ""
 #. Label of the import_file (Attach) field in DocType 'Bank Statement Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Import File"
-msgstr ""
+msgstr "Увоз фајла"
 
 #. Label of the import_warnings_section (Section Break) field in DocType 'Bank
 #. Statement Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Import File Errors and Warnings"
-msgstr ""
+msgstr "Увези фајл са грешкама и упозорењима"
 
 #: erpnext/edi/doctype/code_list/code_list.js:7
 #: erpnext/edi/doctype/code_list/code_list_list.js:3
@@ -24040,7 +24040,7 @@ msgstr ""
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Import Log Preview"
-msgstr ""
+msgstr "Приказ евиденције увоза"
 
 #. Label of the import_mt940_fromat (Check) field in DocType 'Bank Statement
 #. Import'
@@ -24051,7 +24051,7 @@ msgstr ""
 #. Label of the import_preview (HTML) field in DocType 'Bank Statement Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Import Preview"
-msgstr ""
+msgstr "Преглед увоза"
 
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.js:51
 msgid "Import Progress"
@@ -24071,7 +24071,7 @@ msgstr ""
 #. Label of the import_type (Select) field in DocType 'Bank Statement Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Import Type"
-msgstr ""
+msgstr "Увоз врсте"
 
 #: erpnext/public/js/utils/serial_no_batch_selector.js:217
 #: erpnext/stock/doctype/serial_and_batch_bundle/serial_and_batch_bundle.js:84
@@ -24081,7 +24081,7 @@ msgstr ""
 #. Label of the import_warnings (HTML) field in DocType 'Bank Statement Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Import Warnings"
-msgstr ""
+msgstr "Увоз упозорења"
 
 #: erpnext/edi/doctype/code_list/code_list_import.js:130
 msgid "Import completed. {0} common codes created."
@@ -24091,7 +24091,7 @@ msgstr ""
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Import from Google Sheets"
-msgstr ""
+msgstr "Увези из Google Sheets-а"
 
 #: erpnext/stock/doctype/item_price/item_price.js:29
 msgid "Import in Bulk"
@@ -24750,7 +24750,7 @@ msgstr ""
 #. Label of the indicator_color (Data) field in DocType 'Supplier Scorecard'
 #: erpnext/buying/doctype/supplier_scorecard/supplier_scorecard.json
 msgid "Indicator Color"
-msgstr ""
+msgstr "Боја индикатора"
 
 #. Option for the 'Account Type' (Select) field in DocType 'Account'
 #: erpnext/accounts/doctype/account/account.json
@@ -24830,7 +24830,7 @@ msgstr ""
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Insert New Records"
-msgstr ""
+msgstr "Унеси нове записа"
 
 #. Label of the inspected_by (Link) field in DocType 'Quality Inspection'
 #: erpnext/manufacturing/report/quality_inspection_summary/quality_inspection_summary.js:33
@@ -24934,7 +24934,7 @@ msgstr ""
 #: erpnext/stock/doctype/purchase_receipt/purchase_receipt.json
 #: erpnext/subcontracting/doctype/subcontracting_receipt/subcontracting_receipt.json
 msgid "Instructions"
-msgstr ""
+msgstr "Упутства"
 
 #: erpnext/stock/doctype/putaway_rule/putaway_rule.py:81
 #: erpnext/stock/doctype/putaway_rule/putaway_rule.py:308
@@ -26076,7 +26076,7 @@ msgstr ""
 #. Label of the is_standard (Check) field in DocType 'Stock Entry Type'
 #: erpnext/stock/doctype/stock_entry_type/stock_entry_type.json
 msgid "Is Standard"
-msgstr ""
+msgstr "Стандардно"
 
 #. Label of the is_stock_item (Check) field in DocType 'BOM Item'
 #. Label of the is_stock_item (Check) field in DocType 'Sales Order Item'
@@ -26106,7 +26106,7 @@ msgstr ""
 #. Label of the is_system_generated (Check) field in DocType 'Journal Entry'
 #: erpnext/accounts/doctype/journal_entry/journal_entry.json
 msgid "Is System Generated"
-msgstr ""
+msgstr "Системски генерисано"
 
 #. Label of the is_tax_withholding_account (Check) field in DocType 'Purchase
 #. Taxes and Charges'
@@ -28014,7 +28014,7 @@ msgstr ""
 #: erpnext/accounts/doctype/currency_exchange_settings_details/currency_exchange_settings_details.json
 #: erpnext/accounts/doctype/currency_exchange_settings_result/currency_exchange_settings_result.json
 msgid "Key"
-msgstr ""
+msgstr "Кључ"
 
 #. Label of a Card Break in the Buying Workspace
 #. Label of a Card Break in the Selling Workspace
@@ -28775,7 +28775,7 @@ msgstr ""
 #. 'Appointment'
 #: erpnext/crm/doctype/appointment/appointment.json
 msgid "Linked Documents"
-msgstr ""
+msgstr "Повезана документа"
 
 #. Label of the section_break_12 (Section Break) field in DocType 'POS Closing
 #. Entry'
@@ -29556,7 +29556,7 @@ msgstr ""
 #. Dimension'
 #: erpnext/stock/doctype/inventory_dimension/inventory_dimension.json
 msgid "Mandatory Depends On"
-msgstr ""
+msgstr "Обавезно зависи од"
 
 #: erpnext/accounts/doctype/sales_invoice/sales_invoice.py:1727
 msgid "Mandatory Field"
@@ -30559,7 +30559,7 @@ msgstr "Порука"
 #: erpnext/accounts/doctype/payment_gateway_account/payment_gateway_account.json
 #: erpnext/accounts/doctype/payment_request/payment_request.json
 msgid "Message Examples"
-msgstr ""
+msgstr "Примери порука"
 
 #: erpnext/accounts/doctype/payment_request/payment_request.js:47
 #: erpnext/setup/doctype/email_digest/email_digest.js:26
@@ -30641,7 +30641,7 @@ msgstr ""
 #: erpnext/crm/doctype/lead/lead.json
 #: erpnext/setup/doctype/employee/employee.json
 msgid "Middle Name"
-msgstr ""
+msgstr "Средње име"
 
 #. Name of a UOM
 #: erpnext/setup/setup_wizard/data/uom_data.json
@@ -31312,7 +31312,7 @@ msgstr ""
 #: erpnext/subcontracting/doctype/subcontracting_receipt/subcontracting_receipt.json
 #: erpnext/support/doctype/warranty_claim/warranty_claim.json
 msgid "More Information"
-msgstr ""
+msgstr "Више информација"
 
 #. Description of the 'Is Short/Long Year' (Check) field in DocType 'Fiscal
 #. Year'
@@ -32540,7 +32540,7 @@ msgstr ""
 #. Goal'
 #: erpnext/quality_management/doctype/quality_goal/quality_goal.json
 msgid "None"
-msgstr ""
+msgstr "Ниједном"
 
 #: erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py:555
 msgid "None of the items have any change in quantity or value."
@@ -32948,7 +32948,7 @@ msgstr ""
 #. Option for the 'Status' (Select) field in DocType 'Workstation'
 #: erpnext/manufacturing/doctype/workstation/workstation.json
 msgid "Off"
-msgstr ""
+msgstr "Искључено"
 
 #. Label of the scheduled_confirmation_date (Date) field in DocType 'Employee'
 #: erpnext/setup/doctype/employee/employee.json
@@ -33854,7 +33854,7 @@ msgstr "Опције"
 #: erpnext/buying/doctype/supplier_scorecard_scoring_standing/supplier_scorecard_scoring_standing.json
 #: erpnext/buying/doctype/supplier_scorecard_standing/supplier_scorecard_standing.json
 msgid "Orange"
-msgstr ""
+msgstr "Наранџаста"
 
 #: erpnext/selling/report/territory_wise_sales/territory_wise_sales.py:43
 msgid "Order Amount"
@@ -34031,7 +34031,7 @@ msgstr ""
 #: erpnext/setup/doctype/email_digest/email_digest.json
 #: erpnext/setup/setup_wizard/operations/install_fixtures.py:285
 msgid "Other"
-msgstr ""
+msgstr "Остало"
 
 #. Label of the margin_details (Section Break) field in DocType 'Bank
 #. Guarantee'
@@ -34797,7 +34797,7 @@ msgstr ""
 #: erpnext/subcontracting/doctype/subcontracting_order_item/subcontracting_order_item.json
 #: erpnext/subcontracting/doctype/subcontracting_receipt_item/subcontracting_receipt_item.json
 msgid "Page Break"
-msgstr ""
+msgstr "Прелом странице"
 
 #. Label of the include_break (Check) field in DocType 'Process Statement Of
 #. Accounts'
@@ -36438,7 +36438,7 @@ msgstr ""
 #: erpnext/stock/doctype/delivery_note_item/delivery_note_item.json
 #: erpnext/stock/doctype/purchase_receipt_item/purchase_receipt_item.json
 msgid "Percentage"
-msgstr ""
+msgstr "Проценат"
 
 #. Label of the percentage (Percent) field in DocType 'Cost Center Allocation
 #. Percentage'
@@ -39640,7 +39640,7 @@ msgstr ""
 #. Label of the profile_tab (Tab Break) field in DocType 'Employee'
 #: erpnext/setup/doctype/employee/employee.json
 msgid "Profile"
-msgstr ""
+msgstr "Профил"
 
 #. Label of the accounts_module (Column Break) field in DocType 'Email Digest'
 #: erpnext/setup/doctype/email_digest/email_digest.json
@@ -40160,7 +40160,7 @@ msgstr ""
 #: erpnext/communication/doctype/communication_medium/communication_medium.json
 #: erpnext/utilities/doctype/video/video.json
 msgid "Provider"
-msgstr ""
+msgstr "Провајдер"
 
 #. Option for the 'Bank Guarantee Type' (Select) field in DocType 'Bank
 #. Guarantee'
@@ -40804,7 +40804,7 @@ msgstr ""
 #: erpnext/buying/doctype/supplier_scorecard_scoring_standing/supplier_scorecard_scoring_standing.json
 #: erpnext/buying/doctype/supplier_scorecard_standing/supplier_scorecard_standing.json
 msgid "Purple"
-msgstr ""
+msgstr "Љубичасто"
 
 #. Label of the purpose (Select) field in DocType 'Asset Movement'
 #. Label of the material_request_type (Select) field in DocType 'Material
@@ -41675,7 +41675,7 @@ msgstr ""
 #. Search Source'
 #: erpnext/support/doctype/support_search_source/support_search_source.json
 msgid "Query Options"
-msgstr ""
+msgstr "Опције упита"
 
 #. Label of the query_route (Data) field in DocType 'Support Search Source'
 #: erpnext/support/doctype/support_search_source/support_search_source.json
@@ -41861,7 +41861,7 @@ msgstr ""
 #. Item'
 #: erpnext/maintenance/doctype/maintenance_schedule_item/maintenance_schedule_item.json
 msgid "Random"
-msgstr ""
+msgstr "Насумично"
 
 #. Label of the range (Data) field in DocType 'Purchase Receipt'
 #. Label of the range (Data) field in DocType 'Subcontracting Receipt'
@@ -42691,7 +42691,7 @@ msgstr ""
 #: erpnext/crm/doctype/email_campaign/email_campaign.json
 #: erpnext/setup/doctype/email_digest_recipient/email_digest_recipient.json
 msgid "Recipient"
-msgstr ""
+msgstr "Прималац"
 
 #. Label of the recipient_and_message (Section Break) field in DocType 'Payment
 #. Request'
@@ -42702,7 +42702,7 @@ msgstr ""
 #. Label of the recipients (Table MultiSelect) field in DocType 'Email Digest'
 #: erpnext/setup/doctype/email_digest/email_digest.json
 msgid "Recipients"
-msgstr ""
+msgstr "Примаоци"
 
 #. Label of the section_break_1 (Section Break) field in DocType 'Bank
 #. Reconciliation Tool'
@@ -43018,7 +43018,7 @@ msgstr ""
 
 #: erpnext/accounts/doctype/payment_entry/payment_entry.js:1671
 msgid "Reference DocType"
-msgstr ""
+msgstr "DocType референца"
 
 #. Label of the reference_doctype (Link) field in DocType 'Payment Request'
 #: erpnext/accounts/doctype/payment_request/payment_request.json
@@ -43210,7 +43210,7 @@ msgstr ""
 #: erpnext/accounts/doctype/unreconcile_payment_entries/unreconcile_payment_entries.json
 #: erpnext/stock/doctype/quality_inspection/quality_inspection.json
 msgid "Reference Type"
-msgstr ""
+msgstr "Врста референце"
 
 #. Label of the reference_for_reservation (Data) field in DocType 'Serial and
 #. Batch Entry'
@@ -43286,7 +43286,7 @@ msgstr ""
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Refresh Google Sheet"
-msgstr ""
+msgstr "Освежи Google Sheet"
 
 #: erpnext/accounts/doctype/bank/bank.js:21
 msgid "Refresh Plaid Link"
@@ -43705,12 +43705,12 @@ msgstr ""
 #. Statement Of Accounts'
 #: erpnext/accounts/doctype/process_statement_of_accounts/process_statement_of_accounts.json
 msgid "Report Filters"
-msgstr ""
+msgstr "Филтери извештаја"
 
 #. Label of the report_type (Select) field in DocType 'Account'
 #: erpnext/accounts/doctype/account/account.json
 msgid "Report Type"
-msgstr ""
+msgstr "Врста извештаја"
 
 #: erpnext/accounts/doctype/account/account.py:425
 msgid "Report Type is mandatory"
@@ -44780,7 +44780,7 @@ msgstr ""
 #: erpnext/quality_management/doctype/quality_procedure/quality_procedure.json
 #: erpnext/quality_management/doctype/quality_review/quality_review.json
 msgid "Reviews"
-msgstr ""
+msgstr "Прегледи"
 
 #. Label of the rgt (Int) field in DocType 'Account'
 #. Label of the rgt (Int) field in DocType 'Company'
@@ -47464,7 +47464,7 @@ msgstr ""
 
 #: erpnext/accounts/report/financial_statements.py:642
 msgid "Section"
-msgstr ""
+msgstr "Одељак"
 
 #: erpnext/accounts/report/tax_withholding_details/tax_withholding_details.py:174
 #: erpnext/accounts/report/tds_computation_summary/tds_computation_summary.py:117
@@ -49451,7 +49451,7 @@ msgstr ""
 #. Label of the short_name (Data) field in DocType 'Manufacturer'
 #: erpnext/stock/doctype/manufacturer/manufacturer.json
 msgid "Short Name"
-msgstr ""
+msgstr "Надимак"
 
 #. Label of the short_term_loan (Link) field in DocType 'Invoice Discounting'
 #: erpnext/accounts/doctype/invoice_discounting/invoice_discounting.json
@@ -49801,7 +49801,7 @@ msgstr ""
 #. Option for the 'Status' (Select) field in DocType 'Repost Item Valuation'
 #: erpnext/stock/doctype/repost_item_valuation/repost_item_valuation.json
 msgid "Skipped"
-msgstr ""
+msgstr "Прескочено"
 
 #: erpnext/accounts/doctype/tax_withholding_category/tax_withholding_category.py:138
 msgid "Skipping Tax Withholding Category {0} as there is no associated account set for Company {1} in it."
@@ -50334,7 +50334,7 @@ msgstr ""
 
 #: erpnext/utilities/doctype/rename_tool/rename_tool.js:78
 msgid "Started"
-msgstr ""
+msgstr "Започето"
 
 #. Label of the started_time (Datetime) field in DocType 'Job Card'
 #: erpnext/manufacturing/doctype/job_card/job_card.json
@@ -51774,7 +51774,7 @@ msgstr ""
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Submit After Import"
-msgstr ""
+msgstr "Поднеси након увоза"
 
 #. Label of the submit_err_jv (Check) field in DocType 'Company'
 #: erpnext/setup/doctype/company/company.json
@@ -52701,7 +52701,7 @@ msgstr ""
 #. Label of the symbol (Data) field in DocType 'UOM'
 #: erpnext/setup/doctype/uom/uom.json
 msgid "Symbol"
-msgstr ""
+msgstr "Симбол"
 
 #: erpnext/erpnext_integrations/doctype/plaid_settings/plaid_settings.js:23
 msgid "Sync Now"
@@ -53796,7 +53796,7 @@ msgstr ""
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Template Options"
-msgstr ""
+msgstr "Опције шаблона"
 
 #. Label of the template_task (Data) field in DocType 'Task'
 #: erpnext/projects/doctype/task/task.json
@@ -53812,7 +53812,7 @@ msgstr ""
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Template Warnings"
-msgstr ""
+msgstr "Упозорења у шаблону"
 
 #: erpnext/accounts/doctype/purchase_invoice/purchase_invoice_list.js:29
 msgid "Temporarily on Hold"
@@ -54985,7 +54985,7 @@ msgstr ""
 #. Label of the sb_timeline (Section Break) field in DocType 'Task'
 #: erpnext/projects/doctype/task/task.json
 msgid "Timeline"
-msgstr ""
+msgstr "Временски редослед"
 
 #: erpnext/manufacturing/doctype/workstation/workstation_job_card.html:36
 #: erpnext/public/js/projects/timer.js:5
@@ -57238,7 +57238,7 @@ msgstr ""
 #: erpnext/edi/doctype/code_list/code_list.json
 #: erpnext/utilities/doctype/video/video.json
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: erpnext/utilities/doctype/video/video.py:114
 msgid "URL can only be a string"
@@ -57707,7 +57707,7 @@ msgstr ""
 #. Import'
 #: erpnext/accounts/doctype/bank_statement_import/bank_statement_import.json
 msgid "Update Existing Records"
-msgstr ""
+msgstr "Ажурирај постојеће записе"
 
 #: erpnext/buying/doctype/purchase_order/purchase_order.js:362
 #: erpnext/public/js/utils.js:854
@@ -58016,7 +58016,7 @@ msgstr ""
 #: erpnext/accounts/doctype/pos_closing_entry/pos_closing_entry.json
 #: erpnext/setup/doctype/employee/employee.json
 msgid "User Details"
-msgstr ""
+msgstr "Детаљи о кориснику"
 
 #: erpnext/setup/install.py:153
 msgid "User Forum"
@@ -58027,7 +58027,7 @@ msgstr ""
 #. 'Employee'
 #: erpnext/setup/doctype/employee/employee.json
 msgid "User ID"
-msgstr ""
+msgstr "ИД корисника"
 
 #: erpnext/setup/doctype/sales_person/sales_person.py:113
 msgid "User ID not set for Employee {0}"
@@ -58270,7 +58270,7 @@ msgstr ""
 #. Label of the section_break_4 (Section Break) field in DocType 'Tax Rule'
 #: erpnext/accounts/doctype/tax_rule/tax_rule.json
 msgid "Validity"
-msgstr ""
+msgstr "Важење"
 
 #. Label of the validity_details_section (Section Break) field in DocType
 #. 'Lower Deduction Certificate'
@@ -60376,7 +60376,7 @@ msgstr ""
 #: erpnext/buying/doctype/supplier_scorecard_scoring_standing/supplier_scorecard_scoring_standing.json
 #: erpnext/buying/doctype/supplier_scorecard_standing/supplier_scorecard_standing.json
 msgid "Yellow"
-msgstr ""
+msgstr "Жута"
 
 #. Option for the 'Frozen' (Select) field in DocType 'Account'
 #. Option for the 'Is Opening' (Select) field in DocType 'GL Entry'
@@ -60845,7 +60845,7 @@ msgstr ""
 #: erpnext/setup/doctype/sales_person/sales_person.json
 #: erpnext/setup/doctype/territory/territory.json
 msgid "old_parent"
-msgstr ""
+msgstr "old_parent"
 
 #: erpnext/templates/pages/task_info.html:90
 msgid "on"
