@@ -381,13 +381,16 @@ class PurchaseOrder(BuyingController):
 							)
 						)
 					else:
-						if not frappe.get_value("Item", item.fg_item, "is_sub_contracted_item"):
+						is_sub_contracted_item, variant_of, default_bom = frappe.db.get_value(
+							"Item", item.fg_item, ["is_sub_contracted_item", "variant_of", "default_bom"]
+						)
+						if not is_sub_contracted_item:
 							frappe.throw(
 								_("Row #{0}: Finished Good Item {1} must be a sub-contracted item").format(
 									item.idx, item.fg_item
 								)
 							)
-						elif not item.bom and not frappe.get_value("Item", item.fg_item, "default_bom"):
+						elif not variant_of and not item.bom and not default_bom:
 							frappe.throw(
 								_("Row #{0}: Default BOM not found for FG Item {1}").format(
 									item.idx, item.fg_item
@@ -1018,3 +1021,32 @@ def get_mapped_subcontracting_order(source_name, target_doc=None):
 	)
 
 	return target_doc
+
+
+@frappe.whitelist()
+def get_item_codes_for_subcontracting(doctype, txt, searchfield, start, page_len, filters):
+	from frappe.query_builder import Case
+
+	table = frappe.qb.DocType("Item")
+	alias = table.as_("subquery_table")
+	return (
+		frappe.qb.from_(table)
+		.select(table.name, table.item_name)
+		.where(
+			(table.is_sub_contracted_item == 1)
+			& (table.is_stock_item == 1)
+			& (table.has_variants == 0)
+			& (
+				Case()
+				.when(table.variant_of.isnull(), table.default_bom.isnotnull())
+				.else_(
+					frappe.qb.from_(alias)
+					.select(alias.default_bom)
+					.where(alias.name == table.variant_of)
+					.isnotnull()
+				)
+			)
+			& (table.name.like(f"%{txt}%"))
+		)
+		.run()
+	)
