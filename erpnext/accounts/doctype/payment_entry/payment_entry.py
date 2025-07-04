@@ -198,8 +198,8 @@ class PaymentEntry(AccountsController):
 	def on_submit(self):
 		if self.difference_amount:
 			frappe.throw(_("Difference Amount must be zero"))
-		self.make_gl_entries()
 		self.update_outstanding_amounts()
+		self.make_gl_entries()
 		self.update_payment_schedule()
 		self.update_payment_requests()
 		self.set_advance_payment_status_for_advance_doctypes()  # advance_paid_status depends on the payment request amount
@@ -302,11 +302,11 @@ class PaymentEntry(AccountsController):
 			"Advance Payment Ledger Entry",
 		)
 		super().on_cancel()
-		self.make_gl_entries(cancel=1)
 		self.update_outstanding_amounts()
+		self.make_gl_entries(cancel=1)
 		self.update_payment_schedule(cancel=1)
 		self.update_payment_requests(cancel=True)
-		self.set_advance_payment_status_for_advance_doctypes()
+
 		self.delink_advance_entry_references()
 		self.set_status()
 
@@ -316,6 +316,7 @@ class PaymentEntry(AccountsController):
 		)
 
 		update_payment_requests_as_per_pe_references(self.references, cancel=cancel)
+		self.set_advance_payment_status_for_advance_doctypes()
 
 	def update_outstanding_amounts(self):
 		self.set_missing_ref_details(force=True)
